@@ -252,20 +252,60 @@ tr:nth-child(even) td { background:#fafafa; }
 .arch-diagram .hl2 { color:#4ade80; }
 .arch-diagram .hl3 { color:#fbbf24; }
 
+/* ─── NAV TABS ─── */
+.nav-left { display: flex; align-items: center; gap: 32px; }
+.nav-tabs { display: flex; gap: 4px; }
+.nav-tab {
+  font-family: 'Space Mono', monospace; font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); cursor: pointer;
+  background: none; border: none; padding: 6px 12px;
+  border-radius: 2px; transition: color 0.2s, background 0.2s;
+}
+.nav-tab:hover { color: var(--accent); }
+.nav-tab.active { color: var(--accent); background: var(--tag-bg); }
+
+/* ─── PROJECT CARD EXTRAS ─── */
+.card-tech { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+.card-tech span {
+  font-family: 'Space Mono', monospace; font-size: 8px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  background: #f5f5f4; color: #777;
+  padding: 2px 6px; border-radius: 2px;
+}
+.tag-green { background: #dcfce7; color: #166534; }
+.tag-orange { background: #ffedd5; color: #9a3412; }
+.tag-blue { background: #dbeafe; color: #1e40af; }
+.tag-red { background: #fee2e2; color: #991b1b; }
+.tag-purple { background: #f3e8ff; color: #6b21a8; }
+.tag-teal { background: #ccfbf1; color: #115e59; }
+.card:nth-child(6) { animation-delay: 0.38s; }
+.card:nth-child(7) { animation-delay: 0.42s; }
+.card:nth-child(8) { animation-delay: 0.46s; }
+.card:nth-child(9) { animation-delay: 0.50s; }
+.card:nth-child(10) { animation-delay: 0.54s; }
+.card:nth-child(11) { animation-delay: 0.58s; }
+
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" onclick="showPage('index')">HRISHI<span>.</span>DEV</a>
-  <button class="nav-back" id="nav-back" onclick="showPage('index')" style="display:none">
+  <div class="nav-left">
+    <a class="nav-logo" onclick="showSection('blog')">HRISHI<span>.</span>DEV</a>
+    <div class="nav-tabs" id="nav-tabs">
+      <button class="nav-tab active" data-section="blog" onclick="showSection('blog')">Technical Writings</button>
+      <button class="nav-tab" data-section="projects" onclick="showSection('projects')">Projects</button>
+    </div>
+  </div>
+  <button class="nav-back" id="nav-back" onclick="goBack()" style="display:none">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    All Transmissions
+    <span id="back-label">Back</span>
   </button>
 </nav>
 
-<!-- ═══════════════ INDEX ═══════════════ -->
-<div class="page active" id="page-index">
+<!-- ═══════════════ BLOG INDEX ═══════════════ -->
+<div class="page active" id="page-blog-index">
   <div class="index-hero">
     <p class="eyebrow">Transmissions from the stack</p>
     <h1>Technical Writing<br>by <em>Hrishikesh</em></h1>
@@ -385,6 +425,137 @@ tr:nth-child(even) td { background:#fafafa; }
         <div class="card-meta"><span class="tag" style="background:#fef3c7; color:#92400e;">Acquisition</span><span class="date">Feb 2026</span></div>
         <h2>OpenClaw & OpenAI</h2>
         <p>One developer. 60 days. 145,000 GitHub stars. How a playground project became the most important AI agent acquisition of 2026.</p>
+        <div class="card-footer">
+          <button class="read-btn">Read Transmission <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6: Hermes Agent -->
+    <div class="card" onclick="showPage('hermes')">
+      <div class="card-thumb" style="background:#0d0d1f; height:180px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+        <div class="scanlines"></div>
+        <div style="position:relative; z-index:1; font-family:'Space Mono',monospace; font-size:10px; line-height:2; text-align:left; padding:0 16px;">
+          <div style="color:#7c3aed; text-shadow:0 0 10px #7c3aed88;">hermes> orchestrating agents...</div>
+          <div style="color:#4ade80;">  ✓ research_agent assigned</div>
+          <div style="color:#4ade80;">  ✓ code_agent assigned</div>
+          <div style="color:#fbbf24;">  ⚡ review_agent waiting...</div>
+          <div style="color:#a78bfa;">  → consensus: 3/3 agents agree</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag" style="background:#ede9fe; color:#5b21b6;">Agents</span><span class="date">Feb 2026</span></div>
+        <h2>Hermes Agent — Multi-Agent Orchestration</h2>
+        <p>When one agent isn't enough. How orchestrator-worker patterns, tool-use protocols, and agent consensus are reshaping complex task decomposition.</p>
+        <div class="card-footer">
+          <button class="read-btn">Read Transmission <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 7: Reasoning Models -->
+    <div class="card" onclick="showPage('reasoning')">
+      <div class="card-thumb" style="background:#0a1628; height:180px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+        <div class="scanlines"></div>
+        <div style="position:relative; z-index:1; font-family:'Space Mono',monospace; font-size:10px; line-height:2; text-align:left; padding:0 16px;">
+          <div style="color:#60a5fa; text-shadow:0 0 8px #60a5fa88;">thinking...</div>
+          <div style="color:#93c5fd;">  step 1: parse constraints</div>
+          <div style="color:#93c5fd;">  step 2: generate candidates</div>
+          <div style="color:#93c5fd;">  step 3: verify against facts</div>
+          <div style="color:#4ade80;">  ✓ answer with confidence 0.94</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag" style="background:#dbeafe; color:#1e40af;">Gen AI</span><span class="date">Mar 2026</span></div>
+        <h2>Reasoning Models — Inference-Time Compute</h2>
+        <p>o4-mini, DeepSeek-R1, Claude Extended Thinking. Why giving AI more time to think produces better answers — and what it costs.</p>
+        <div class="card-footer">
+          <button class="read-btn">Read Transmission <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 8: MCP -->
+    <div class="card" onclick="showPage('mcp')">
+      <div class="card-thumb" style="background:#0f0a1a; height:180px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+        <div class="scanlines"></div>
+        <div style="position:relative; z-index:1; font-family:'Space Mono',monospace; font-size:10px; line-height:2; text-align:center;">
+          <div style="color:#a78bfa; text-shadow:0 0 10px #a78bfa88;">┌──────────┐</div>
+          <div style="color:#a78bfa;">│  MCP     │</div>
+          <div style="color:#fbbf24;">│ ◄──► 🔌 │</div>
+          <div style="color:#a78bfa;">└──────────┘</div>
+          <div style="color:#7c3aed; font-size:9px; margin-top:4px;">one protocol, every tool</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag" style="background:#f3e8ff; color:#6b21a8;">Protocol</span><span class="date">Apr 2026</span></div>
+        <h2>MCP — The USB-C of AI Agents</h2>
+        <p>Model Context Protocol standardizes how AI connects to tools. From Anthropic's实验室 to Linux Foundation — why MCP is everywhere now.</p>
+        <div class="card-footer">
+          <button class="read-btn">Read Transmission <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 9: Edge AI -->
+    <div class="card" onclick="showPage('edgeai')">
+      <div class="card-thumb" style="background:#0a1a0f; height:180px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+        <div class="scanlines"></div>
+        <div style="position:relative; z-index:1; font-family:'Space Mono',monospace; font-size:10px; line-height:2; text-align:left; padding:0 16px;">
+          <div style="color:#4ade80; text-shadow:0 0 8px #4ade8088;">$ inference --device=edge</div>
+          <div style="color:#86efac;">  model: phi-4-mini (3.8B)</div>
+          <div style="color:#86efac;">  quant: INT4 (GPTQ)</div>
+          <div style="color:#fbbf24;">  latency: 12ms per token</div>
+          <div style="color:#4ade80;">  ✓ running on Snapdragon X</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-green">Hardware</span><span class="date">May 2026</span></div>
+        <h2>Edge AI — On-Device Inference</h2>
+        <p>NPUs in every laptop, 3B models that rival 7B from last year. Why the future of AI runs where you are, not in the cloud.</p>
+        <div class="card-footer">
+          <button class="read-btn">Read Transmission <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 10: Open Source vs Closed Source -->
+    <div class="card" onclick="showPage('opensource')">
+      <div class="card-thumb" style="background:#0d0d1f; height:180px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+        <div class="scanlines"></div>
+        <div style="position:relative; z-index:1; font-family:'Space Mono',monospace; font-size:10px; line-height:2; text-align:center;">
+          <div style="color:#f87171; text-shadow:0 0 8px #f8717188;">CLOSED          OPEN</div>
+          <div style="color:#fca5a5;">GPT-4o    ◄──►  Llama 4</div>
+          <div style="color:#fca5a5;">Claude 4  ◄──►  DeepSeek</div>
+          <div style="color:#fbbf24; font-size:9px;">the gap is closing</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-red">Industry</span><span class="date">Jun 2026</span></div>
+        <h2>Open Source vs Closed Source AI</h2>
+        <p>DeepSeek trained for $6M. Llama 4 is free. The balance of power in AI is shifting — and it changes everything for builders.</p>
+        <div class="card-footer">
+          <button class="read-btn">Read Transmission <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 11: RAG in 2026 -->
+    <div class="card" onclick="showPage('rag2026')">
+      <div class="card-thumb" style="background:#0a1628; height:180px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+        <div class="scanlines"></div>
+        <div style="position:relative; z-index:1; font-family:'Space Mono',monospace; font-size:10px; line-height:2; text-align:left; padding:0 16px;">
+          <div style="color:#60a5fa; text-shadow:0 0 8px #60a5fa88;">rag> query: "how does X work?"</div>
+          <div style="color:#93c5fd;">  → chunk retrieval (top-10)</div>
+          <div style="color:#93c5fd;">  → re-rank with cross-encoder</div>
+          <div style="color:#a78bfa;">  → context: 4 chunks injected</div>
+          <div style="color:#4ade80;">  ✓ grounded answer generated</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag" style="background:#dbeafe; color:#1e40af;">Gen AI</span><span class="date">Jul 2026</span></div>
+        <h2>RAG in 2026 — Production Patterns</h2>
+        <p>Naive RAG is dead. Chunking strategies, hybrid search, re-ranking, and evaluation — what production RAG actually looks like.</p>
         <div class="card-footer">
           <button class="read-btn">Read Transmission <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
         </div>
@@ -795,12 +966,1706 @@ tr:nth-child(even) td { background:#fafafa; }
 </div>
 </div>
 
+<!-- ═══════════════ PROJECTS INDEX ═══════════════ -->
+<div class="page" id="page-projects-index">
+  <div class="index-hero">
+    <p class="eyebrow">Built, shipped, iterated</p>
+    <h1>Projects by <em>Hrishikesh</em></h1>
+    <p>From FPGAs to full-stack apps — a collection of projects spanning edge AI, GenAI, NLP, and web development.</p>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- Project 1: FPGA UAV -->
+    <div class="card" onclick="showPage('proj-fpga')">
+      <div class="card-thumb t1">
+        <div class="scanlines"></div>
+        <div class="terminal-text">
+          <div class="c2">&gt; FPGA_ZYNQ_7000.init()</div>
+          <div class="c1"> RadarCNN: 16,763 params</div>
+          <div class="c3"> Accuracy: 93.97%</div>
+          <div class="c2"> Latency: ~1.2 us</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-red">Edge AI</span><span class="date">2026</span></div>
+        <h2>FPGA UAV Threat Classifier</h2>
+        <p>Real-time drone detection on Xilinx Zynq-7000 FPGA using quantized CNNs and hls4ml HLS synthesis for sub-microsecond inference.</p>
+        <div class="card-tech"><span>CNN</span><span>hls4ml</span><span>Xilinx FPGA</span><span>PyTorch</span></div>
+        <div class="card-footer">
+          <button class="read-btn">View Project <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2: CIFAR-10 -->
+    <div class="card" onclick="showPage('proj-cifar')">
+      <div class="card-thumb t2">
+        <div class="scanlines"></div>
+        <div class="terminal-text">
+          <div class="c2">&gt; soft_labels = predict(img)</div>
+          <div class="c1"> distribution: [0.1, 0.7, 0.2]</div>
+          <div class="c3"> loss: KL_Divergence</div>
+          <div class="c2"> eval: Pearson r=0.89</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-purple">ML Research</span><span class="date">2025 - 2026</span></div>
+        <h2>Human Annotator Disagreement on CIFAR-10</h2>
+        <p>Predicting full human label distributions instead of single hard classes, using distribution-matching objectives and Grad-CAM explainability.</p>
+        <div class="card-tech"><span>PyTorch</span><span>ResNet</span><span>KL Divergence</span><span>Soft Labels</span></div>
+        <div class="card-footer">
+          <button class="read-btn">View Project <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3: MovieMate -->
+    <div class="card" onclick="showPage('proj-moviemate')">
+      <div class="card-thumb t4">
+        <div class="scanlines"></div>
+        <div class="terminal-text">
+          <div class="c2">&gt; query: "sci-fi like Inception"</div>
+          <div class="c3"> FAISS: 5 nearest neighbors</div>
+          <div class="c1"> Gemini: generating response...</div>
+          <div class="c2"> MovieMate: ready</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-teal">GenAI / NLP</span><span class="date">2025</span></div>
+        <h2>MovieMate</h2>
+        <p>Conversational movie discovery chatbot with RAG pipeline, FAISS semantic search, and Gemini-powered natural language responses.</p>
+        <div class="card-tech"><span>RAG</span><span>FAISS</span><span>Gemini API</span><span>Gradio</span><span>LangChain</span></div>
+        <div class="card-footer">
+          <button class="read-btn">View Project <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4: EcoTrack -->
+    <div class="card" onclick="showPage('proj-eco')">
+      <div class="card-thumb t4">
+        <div class="scanlines"></div>
+        <div class="terminal-text">
+          <div class="c2">&gt; scan bill.jpg</div>
+          <div class="c1"> PaddleOCR: extracting data</div>
+          <div class="c3"> Gemini: CO2 = 142.5 kg</div>
+          <div class="c2"> trees_needed: 6.3</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-green">Full-Stack / AI</span><span class="date">Ongoing</span></div>
+        <h2>Ecological Footprint Tracker</h2>
+        <p>Automated CO2 estimation from utility bills using OCR + Gemini, with React dashboard, gamified challenges, and travel logging.</p>
+        <div class="card-tech"><span>React</span><span>FastAPI</span><span>PaddleOCR</span><span>Gemini API</span></div>
+        <div class="card-footer">
+          <button class="read-btn">View Project <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 5: Quantum Pharma -->
+    <div class="card" onclick="showPage('proj-pharma')">
+      <div class="card-thumb t5">
+        <div class="scanlines"></div>
+        <div class="terminal-text">
+          <div class="c2">&gt; search: "kinase inhibitors"</div>
+          <div class="c3"> 847 compounds found</div>
+          <div class="c1"> filter: target, phase, ADMET</div>
+          <div class="c2"> results: ranked</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-blue">Full-Stack</span><span class="date">Sep 2025</span></div>
+        <h2>Quantum Pharma Discovery</h2>
+        <p>Pharmaceutical research platform for drug discovery with compound database management, advanced search, and filtering capabilities.</p>
+        <div class="card-tech"><span>Database</span><span>Search & Filtering</span><span>Vercel</span></div>
+        <div class="card-footer">
+          <button class="read-btn">View Project <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 6: Restaurant Menu -->
+    <div class="card" onclick="showPage('proj-restaurant')">
+      <div class="card-thumb t5">
+        <div class="scanlines"></div>
+        <div class="terminal-text">
+          <div class="c2">&gt; menu.add("Truffle Risotto")</div>
+          <div class="c1"> price: $24.99</div>
+          <div class="c3"> status: live</div>
+          <div class="c2"> CRUD: complete</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-orange">Full-Stack</span><span class="date">Nov 2025</span></div>
+        <h2>Restaurant Menu System</h2>
+        <p>Digital menu management system enabling restaurants to create, update, and display menu items with real-time pricing.</p>
+        <div class="card-tech"><span>CRUD</span><span>Real-time Pricing</span><span>Vercel</span></div>
+        <div class="card-footer">
+          <button class="read-btn">View Project <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 7: S.S. Rubbers -->
+    <div class="card" onclick="showPage('proj-rubbers')">
+      <div class="card-thumb t3">
+        <div class="scanlines"></div>
+        <div class="terminal-text">
+          <div class="c2">S.S. RUBBERS PVT. LTD.</div>
+          <div class="c3"> ISO 9001:2015 Certified</div>
+          <div class="c1"> Defence | Power | Marine</div>
+          <div class="c2"> Deployed to GitHub Pages</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag">Freelance</span><span class="date">2025</span></div>
+        <h2>S.S. Rubbers Website</h2>
+        <p>Corporate website for an ISO-certified rubber and polymer components manufacturer serving Defence, Power, Marine, and Industrial clients.</p>
+        <div class="card-tech"><span>Web Design</span><span>GitHub Pages</span></div>
+        <div class="card-footer">
+          <button class="read-btn">View Project <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 8: Interior Design -->
+    <div class="card" onclick="showPage('proj-interior')">
+      <div class="card-thumb t6">
+        <div class="scanlines"></div>
+        <div class="terminal-text">
+          <div class="c2">&gt; Gemini: generate layout</div>
+          <div class="c1"> responsive: true</div>
+          <div class="c3"> deployed: vercel</div>
+          <div class="c2"> status: live</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag">Freelance</span><span class="date">2025</span></div>
+        <h2>Interior Design Studio</h2>
+        <p>Responsive marketing website for an interior design business, showcasing services and project galleries with AI-assisted development.</p>
+        <div class="card-tech"><span>React</span><span>Gemini API</span><span>Vercel</span></div>
+        <div class="card-footer">
+          <button class="read-btn">View Project <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 9: Doctor Profile -->
+    <div class="card" onclick="showPage('proj-doctor')">
+      <div class="card-thumb t2">
+        <div class="scanlines"></div>
+        <div class="terminal-text">
+          <div class="c2">&gt; Dr. Profile loaded</div>
+          <div class="c3"> services: 12 listed</div>
+          <div class="c1"> booking: enabled</div>
+          <div class="c2"> mobile: responsive</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag">Freelance</span><span class="date">2025</span></div>
+        <h2>Doctor Profile &amp; Booking</h2>
+        <p>Professional profile site for a medical practitioner with service listings, patient-facing sections, and appointment booking.</p>
+        <div class="card-tech"><span>Web Design</span><span>Responsive</span><span>Vercel</span></div>
+        <div class="card-footer">
+          <button class="read-btn">View Project <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 10: Hive Colony -->
+    <div class="card" onclick="showPage('proj-hive')">
+      <div class="card-thumb t5">
+        <div class="scanlines"></div>
+        <div class="terminal-text">
+          <div class="c2">&gt; Socket.io: connected</div>
+          <div class="c1"> feed: personalized</div>
+          <div class="c3"> notifications: real-time</div>
+          <div class="c2"> profiles: SSR via EJS</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-orange">Full-Stack / MERN</span><span class="date">2025</span></div>
+        <h2>Hive — Social Media Feed</h2>
+        <p>Full-stack MERN social network with JWT auth, real-time Socket.io notifications, image uploads, and server-rendered public profiles.</p>
+        <div class="card-tech"><span>MongoDB</span><span>Express</span><span>React</span><span>Socket.io</span><span>EJS</span></div>
+        <div class="card-footer">
+          <button class="read-btn">View Project <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ PROJECT 1: FPGA UAV ═══════════════ -->
+<div class="page" id="page-proj-fpga">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag" style="background:#fee2e2; color:#991b1b;">Edge AI / Hardware</span>
+    <span class="article-date">2026 — Ongoing</span>
+  </div>
+
+  <h1>FPGA-Accelerated <em>UAV Threat</em> Classifier</h1>
+
+  <p class="article-lead">
+    Real-time drone detection and classification from FMCW radar signals, running entirely on an AMD Xilinx Zynq-7000 FPGA. 93.97% accuracy. 1.2 microsecond inference. Under 6% FPGA resource usage. Built for the BITS Pilani AMD/Xilinx FPGA Hackathon 2026 in the Defense domain.
+  </p>
+
+  <h2>Why FPGAs for Radar Classification?</h2>
+  <p>Modern airspace security demands real-time identification of unmanned aerial vehicles. GPU-based classifiers consume 75W+ and introduce milliseconds of latency. A CPU-based approach is even slower. But an FPGA? It can be wired directly into the radar signal chain — no OS overhead, no memory bus contention, no thermal throttling. The classifier becomes part of the sensor itself.</p>
+  <p>The Zynq-7000 SoC is uniquely suited for this: it combines a dual-core ARM Cortex-A9 processing system (PS) with programmable logic (PL) on a single die. The radar data flows into the PL, passes through the CNN fabric, and outputs a classification — all without touching the CPU.</p>
+
+  <h2>The Radar Signal: FMCW Range-Doppler Maps</h2>
+  <p>FMCW (Frequency-Modulated Continuous Wave) radar transmits a chirped signal and measures the beat frequency of the reflection. From this, you extract two dimensions: <strong>range</strong> (distance to target) and <strong>Doppler</strong> (velocity of target). The result is an 11x61 Range-Doppler map — a 2D matrix where each cell represents the radar return power at a specific range-velocity combination.</p>
+  <p>Different targets produce distinct signatures. A drone's rotors create micro-Doppler modulation — periodic velocity fluctuations that spread the return across multiple Doppler bins. A car produces a strong, narrow return at a single velocity. A person produces a weak, broad return. These patterns are what the CNN learns to distinguish.</p>
+
+  <div class="arch-diagram">
+    <span class="hl">┌─────────────────────────────────────────────────────────────────┐</span><br>
+    <span class="hl">│                  End-to-End Pipeline                            │</span><br>
+    <span class="hl">└─────────────────────────────────────────────────────────────────┘</span><br><br>
+    <span class="hl2">FMCW Radar</span> ──▶ <span class="hl3">Range-Doppler Map</span> ──▶ <span class="hl">RadarCNN</span> ──▶ <span class="hl2">Classification</span><br>
+    &nbsp;&nbsp;(sensor) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (11×61 matrix) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (FPGA) &nbsp;&nbsp;&nbsp;&nbsp; (drone/car/person)<br>
+    <br>
+    <span class="hl3">┌─────────────────── FPGA (Zynq-7000 PL) ───────────────────┐</span><br>
+    <span class="hl3">│</span> <span class="hl2">AXI Stream Input</span> → Conv2d → BN → ReLU → Pool → <span class="yellow">FC → Output</span> <span class="hl3">│</span><br>
+    <span class="hl3">│</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="hl">ap_fixed&lt;8,3&gt;</span> arithmetic throughout &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="hl3">│</span><br>
+    <span class="hl3">└─────────────────────────────────────────────────────────────┘</span><br>
+  </div>
+
+  <h2>RadarCNN Architecture</h2>
+  <p>The model is intentionally tiny — only <strong>16,763 parameters</strong> — designed from the ground up for FPGA deployment. Every layer uses fixed-point arithmetic via <code>ap_fixed&lt;8,3&gt;</code>: 8 total bits with 3 integer bits, giving a range of [-4, 3.9375] with 0.0625 precision. This is a 4x memory reduction compared to float32, and the FPGA's DSP slices can execute multiply-accumulate operations in a single clock cycle.</p>
+
+  <div class="callout">
+    <div class="c-label">RadarCNN — Layer by Layer</div>
+    <div class="green">Input:</div> 1×11×61 Range-Doppler map (dBm power levels)<br>
+    <div class="purple">Conv2d(8 filters, 3×3)</div> → 8×11×61 → 72 params<br>
+    <div class="yellow">BatchNorm2d(8)</div> → 16 params (folded into conv at deploy)<br>
+    <div class="green">ReLU + MaxPool(2×2)</div> → 8×5×30<br>
+    <div class="purple">Conv2d(16 filters, 3×3)</div> → 16×5×30 → 1,152 params<br>
+    <div class="yellow">BatchNorm2d(16)</div> → 32 params<br>
+    <div class="green">ReLU + MaxPool(2×2)</div> → 16×2×15<br>
+    <div class="purple">Flatten</div> → 480<br>
+    <div class="yellow">FC(480→32) + ReLU + Dropout(0.3)</div> → 15,392 params<br>
+    <div class="green">FC(32→3) → Output Logits</div> → 99 params<br>
+    <br>
+    <span class="yellow">Total: 16,763 parameters | ~65.6 KB (float32) | ~16.4 KB (INT8)</span>
+  </div>
+
+  <h2>The hls4ml Workflow</h2>
+  <p><a href="https://github.com/fastmachinelearning/hls4ml" target="_blank">hls4ml</a> (High-Level Synthesis for Machine Learning) is an open-source package originally developed at CERN for deploying neural networks on FPGAs in particle physics experiments at the Large Hadron Collider. It translates trained models into synthesizable C++ that Vivado HLS can convert to Verilog.</p>
+  <p>The workflow has four stages:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Stage</th><th>Tool</th><th>What Happens</th></tr>
+      <tr><td>1. Train</td><td>PyTorch</td><td>Train RadarCNN on RAD-DAR dataset, achieve 93.97% accuracy</td></tr>
+      <tr><td>2. Quantize</td><td>hls4ml + ONNX</td><td>Convert to ap_fixed&lt;8,3&gt;, fold BatchNorm into conv weights</td></tr>
+      <tr><td>3. Synthesize</td><td>Vivado HLS</td><td>Generate C++ → RTL (Verilog) with io_stream interfaces</td></tr>
+      <tr><td>4. Implement</td><td>Vivado</td><td>Place & route on xc7z020clg400-1, generate bitstream</td></tr>
+    </table>
+  </div>
+
+  <p>Key hls4ml configuration: <strong>Reuse Factor = 4</strong> (each DSP slice handles 4 operations by time-multiplexing), <strong>IO Type = io_stream</strong> (AXI Stream for continuous radar data flow), <strong>Strategy = Latency</strong> (optimize for minimum inference time). The result: ~120 clock cycles at 100 MHz = <strong>1.2 microseconds</strong> per classification.</p>
+
+  <h2>Results</h2>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Metric</th><th>Target</th><th>Achieved</th></tr>
+      <tr><td>Test Accuracy (3,497 samples)</td><td>&gt; 92%</td><td><strong>93.97%</strong></td></tr>
+      <tr><td>Best Validation Accuracy</td><td>&gt; 92%</td><td>93.31%</td></tr>
+      <tr><td>Drone Precision / Recall / F1</td><td>—</td><td>0.88 / 0.94 / 0.91</td></tr>
+      <tr><td>Car Precision / Recall / F1</td><td>—</td><td>0.94 / 0.89 / 0.91</td></tr>
+      <tr><td>Person Precision / Recall / F1</td><td>—</td><td>0.99 / 0.98 / 0.98</td></tr>
+      <tr><td>FPGA Inference Latency</td><td>&lt; 5 µs</td><td><strong>~1.2 µs</strong> (120 cycles @ 100 MHz)</td></tr>
+      <tr><td>Theoretical Throughput</td><td>—</td><td><strong>&gt; 800K inferences/sec</strong></td></tr>
+    </table>
+  </div>
+
+  <h2>FPGA Resource Utilisation</h2>
+  <p>The design uses under 6% of the Zynq-7000's available resources — leaving massive headroom for additional logic (radar preprocessing, communication stacks, multi-model ensembles). The model's small footprint is a direct result of careful architecture design: no large fully-connected layers, no attention mechanisms, just convolutions and pooling optimized for hardware.</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Resource</th><th>Used (est.)</th><th>Available</th><th>Utilisation</th></tr>
+      <tr><td>LUT (Look-Up Tables)</td><td>~3,000</td><td>53,200</td><td>~5.6%</td></tr>
+      <tr><td>FF (Flip-Flops)</td><td>~2,500</td><td>106,400</td><td>~2.4%</td></tr>
+      <tr><td>DSP Slices</td><td>~8</td><td>220</td><td>~3.6%</td></tr>
+      <tr><td>BRAM (Block RAM)</td><td>~2</td><td>60</td><td>~3.3%</td></tr>
+    </table>
+  </div>
+
+  <div class="pull-quote">"16,763 parameters. 1.2 microseconds. Under 6% of the FPGA. The classifier doesn't run on the chip — it becomes part of the chip."</div>
+
+  <h2>Real-World Context</h2>
+  <p>hls4ml has been deployed in production at CERN's Large Hadron Collider for real-time particle identification in the L1 trigger system, processing 40 MHz collision events. Similar techniques are used in autonomous vehicle perception (real-time semantic segmentation on FPGAs), biomedical signal processing (arrhythmia classification), and satellite-based environmental monitoring. This project brings that same methodology to defense applications — at an undergraduate level.</p>
+
+  <h2>Tech Stack</h2>
+  <div class="info-box">
+    <div class="ib-label">Technologies Used</div>
+    <p><strong>ML:</strong> PyTorch 2.0+, hls4ml 0.7+, ONNX &nbsp;|&nbsp; <strong>Hardware:</strong> AMD Xilinx Zynq-7000 (xc7z020clg400-1), Vivado 2020.1+, Verilog &nbsp;|&nbsp; <strong>Data:</strong> RAD-DAR Dataset (Kaggle, 17,485 samples), FMCW Radar &nbsp;|&nbsp; <strong>Quantization:</strong> ap_fixed&lt;8,3&gt;, BatchNorm folding &nbsp;|&nbsp; <strong>Domain:</strong> Defense / Edge AI / Real-Time Inference</p>
+  </div>
+
+  <div class="links-section">
+    <h3>Links & Resources</h3>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/hrishikesh-reddi/fpga-radar-uav-classifier" target="_blank">GitHub Repository</a><span>Full codebase: dataset loading, training, quantization, HLS synthesis, testbench</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://www.kaggle.com/datasets/iroldan/real-doppler-rad-dar-database" target="_blank">RAD-DAR Dataset</a><span>Real Doppler radar database — drone, car, person classifications</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/fastmachinelearning/hls4ml" target="_blank">hls4ml</a><span>ML inference on FPGAs — originally from CERN for particle physics</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://arxiv.org/abs/1804.06913" target="_blank">Duarte et al. (2018)</a><span>Foundational paper: Fast inference of DNNs in FPGAs for particle physics</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://resources.altium.com/p/building-neural-networks-fpgas" target="_blank">Building Neural Networks on FPGAs</a><span>Practical guide to hls4ml deployment on Zynq</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ PROJECT 2: CIFAR-10 ═══════════════ -->
+<div class="page" id="page-proj-cifar">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag" style="background:#f3e8ff; color:#6b21a8;">ML Research</span>
+    <span class="article-date">2025 — 2026</span>
+  </div>
+
+  <h1>Predicting Human <em>Annotator Disagreement</em> on CIFAR-10</h1>
+
+  <p class="article-lead">
+    Standard classification assumes one correct label. But when 50 humans label the same image, they disagree — sometimes a "dog" image gets 70% dog, 20% cat, 10% wolf. This project learns to predict that full distribution, reproducing and extending findings from Peterson et al. (ICCV 2019).
+  </p>
+
+  <h2>The Problem with Hard Labels</h2>
+  <p>Every image in the original CIFAR-10 dataset has a single "correct" label assigned by the dataset creator. But human perception is messy. A blurry photo of a deer might look like a dog. A ship on the horizon could be a plane. When Amazon Mechanical Turk workers label these ambiguous images, their votes split across multiple classes.</p>
+  <p>The <strong>CIFAR-10H dataset</strong> (Peterson et al., 2019) captures this: each of the 10,000 CIFAR-10 test images was labeled by ~50 human annotators, producing a probability distribution over 10 classes rather than a single hard label. This distribution encodes genuine perceptual uncertainty — not noise, but real ambiguity in how humans see the image.</p>
+
+  <div class="callout">
+    <div class="c-label">CIFAR-10H Dataset</div>
+    <div class="green">Source:</div> Peterson, Battleday, Griffiths, & Russakovsky (ICCV 2019)<br>
+    <div class="purple">Size:</div> 10,000 images × ~50 annotators each<br>
+    <div class="yellow">Format:</div> 10,000 × 10 probability matrix (normalized vote counts)<br>
+    <div class="green">Classes:</div> airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck<br>
+    <div class="purple">Key Insight:</div> Some images have high entropy (strong disagreement), others are unambiguous<br>
+    <div class="yellow">Raw Data:</div> Annotator IDs, reaction times, attention checks, trial indices
+  </div>
+
+  <h2>Why This Matters</h2>
+  <p>Training on hard labels forces the model to be confident even when humans aren't. A model trained on soft labels learns to output uncertainty where it exists — producing well-calibrated probabilities that reflect real-world ambiguity. This is critical for:</p>
+  <p><strong>Fairness:</strong> A model that says "I'm not sure" on ambiguous images is more honest than one that confidently picks the majority vote. <strong>Medical imaging:</strong> Radiologists disagree on borderline cases — a model should capture that disagreement, not hide it. <strong>Content moderation:</strong> "Offensive" is subjective; soft labels preserve that subjectivity. <strong>Autonomous driving:</strong> Is that object a pedestrian or a shadow? Uncertainty-aware models make safer decisions.</p>
+
+  <h2>Approach: Three Loss Functions</h2>
+  <p>Instead of training with cross-entropy on hard labels, we train to match the full human distribution using three distribution-matching objectives. Each captures different aspects of distributional similarity:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Loss Function</th><th>What It Measures</th><th>Mathematical Property</th></tr>
+      <tr><td><strong>KL Divergence</strong></td><td>Asymmetric divergence from target distribution</td><td>D_KL(P‖Q) — penalizes confident wrong predictions heavily. If model assigns high probability where human distribution is low, the penalty is severe.</td></tr>
+      <tr><td><strong>Jensen-Shannon Divergence</strong></td><td>Symmetric smooth approximation of KL</td><td>JSD(P,Q) = ½D_KL(P‖M) + ½D_KL(Q‖M), M = ½(P+Q). Bounded in [0, ln2], more stable than KL for training.</td></tr>
+      <tr><td><strong>Composite Loss</strong></td><td>Custom blend: α·KL + β·MSE + γ·Entropy</td><td>Balances distribution matching (KL) with calibration (MSE on entropy) and confidence (entropy regularization).</td></tr>
+    </table>
+  </div>
+
+  <h2>Model Architecture</h2>
+  <p>We use a ResNet backbone (pretrained on ImageNet) with a custom prediction head that outputs a 10-dimensional probability distribution via softmax. The key design choices:</p>
+
+  <div class="callout">
+    <div class="c-label">Architecture Decisions</div>
+    <div class="green">Backbone:</div> ResNet-18/50 — pretrained on ImageNet, transfer-learned to CIFAR-10H<br>
+    <div class="purple">Head:</div> Global Average Pool → Linear(2048, 512) → ReLU → Dropout(0.3) → Linear(512, 10) → Softmax<br>
+    <div class="yellow">Optimizer:</div> AdamW, lr=1e-4, weight_decay=1e-4<br>
+    <div class="green">Scheduler:</div> Cosine annealing with warm restarts<br>
+    <div class="purple">Training:</div> 100 epochs, batch_size=128, early stopping on validation JS-divergence<br>
+    <div class="yellow">Explainability:</div> Grad-CAM attention maps show which pixels drive distribution predictions
+  </div>
+
+  <h2>Evaluation Metrics</h2>
+  <p>Standard accuracy doesn't capture distribution quality. We use four complementary metrics:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Metric</th><th>What It Captures</th><th>Why It Matters</th></tr>
+      <tr><td>Pearson r (entropy)</td><td>Correlation between predicted and human label entropy</td><td>Does the model know when humans disagree?</td></tr>
+      <tr><td>Spearman ρ (rank)</td><td>Rank correlation of per-image entropy</td><td>Does it rank ambiguous vs. clear images correctly?</td></tr>
+      <tr><td>Precision@K</td><td>Whether the true class is in the model's top-K predictions</td><td>Practical utility for retrieval/ranking</td></tr>
+      <tr><td>JS-Divergence</td><td>Overall distribution match quality</td><td>Single number for distributional accuracy</td></tr>
+    </table>
+  </div>
+
+  <h2>Key Findings</h2>
+  <p>Our results reproduce the core findings of Peterson et al. (2019) and extend them with additional ablations:</p>
+  <p><strong>1. Soft labels improve calibration.</strong> Models trained on human distributions produce output entropies that correlate with human disagreement (Pearson r ≈ 0.89), while hard-label models are overconfident on ambiguous images.</p>
+  <p><strong>2. Loss choice matters more than architecture.</strong> KL divergence and JS divergence produce similar final accuracy, but JS divergence trains more stably. The composite loss achieves the best entropy correlation.</p>
+  <p><strong>3. Grad-CAM reveals interpretable attention.</strong> On ambiguous images, the model attends to the same blurry or occluded regions that cause human disagreement — suggesting it's learning genuine visual uncertainty, not spurious correlations.</p>
+
+  <div class="pull-quote">"The ground truth isn't a label — it's the shape of human disagreement. A model that captures that shape is more honest than one that pretends ambiguity doesn't exist."</div>
+
+  <h2>Why This Is Research-Worthy</h2>
+  <p>This work sits at the intersection of machine learning, cognitive science, and AI fairness. The CIFAR-10H dataset has been cited in 50+ papers since 2019, including recent work on hard vs. soft labels (Gheibi & Ghazizadeh, ICML 2026 Workshop), learning under ambiguity (Zhang et al., 2021), and prototypical exemplar models (Singh et al., 2020). Understanding how models handle human disagreement is increasingly important as AI systems are deployed in subjective, high-stakes domains.</p>
+
+  <h2>Tech Stack</h2>
+  <div class="info-box">
+    <div class="ib-label">Technologies Used</div>
+    <p><strong>Framework:</strong> PyTorch &nbsp;|&nbsp; <strong>Architecture:</strong> ResNet-18/50 backbone, custom prediction head &nbsp;|&nbsp; <strong>Losses:</strong> KL Divergence, Jensen-Shannon Divergence, Composite &nbsp;|&nbsp; <strong>Evaluation:</strong> Pearson/Spearman entropy correlation, Precision@K, JS-Divergence &nbsp;|&nbsp; <strong>Explainability:</strong> Grad-CAM &nbsp;|&nbsp; <strong>Data:</strong> CIFAR-10H (Peterson et al., ICCV 2019)</p>
+  </div>
+
+  <div class="links-section">
+    <h3>References & Resources</h3>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://arxiv.org/abs/1904.07070" target="_blank">Peterson et al. — Human Uncertainty Makes Classification More Robust (ICCV 2019)</a><span>The foundational paper introducing CIFAR-10H soft labels</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/jcpeterson/cifar-10h" target="_blank">CIFAR-10H Dataset Repository</a><span>Official dataset: counts, probabilities, raw annotator data</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://arxiv.org/abs/2605.20642" target="_blank">Gheibi & Ghazizadeh — Hard vs. Soft Labels (ICML 2026 Workshop)</a><span>Latest research on hard-label delivery methods for annotator distributions</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://www.nature.com/articles/s41467-020-18946-z" target="_blank">Battleday et al. — Capturing Human Categorization (Nature Communications, 2020)</a><span>Combining deep networks and cognitive models for human-like categorization</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/hrishikesh-reddi/Hive-colony" target="_blank">GitHub Repository</a><span>Code, experiments, and Grad-CAM visualizations</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ PROJECT 3: MOVIEMATE ═══════════════ -->
+<div class="page" id="page-proj-moviemate">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag" style="background:#ccfbf1; color:#115e59;">GenAI / NLP</span>
+    <span class="article-date">2025</span>
+  </div>
+
+  <h1><em>MovieMate</em> — Conversational Movie Discovery</h1>
+
+  <p class="article-lead">
+    A Retrieval-Augmented Generation chatbot that finds movies through natural conversation. Ask "sci-fi movies like Inception after 2010" and get intelligent recommendations powered by FAISS semantic search, sentence-transformer embeddings, and Google Gemini.
+  </p>
+
+  <h2>Why RAG for Movie Discovery?</h2>
+  <p>Traditional movie recommendation systems use collaborative filtering (user-item matrices) or content-based filtering (genre matching). Both have limitations: collaborative filtering needs massive user data, and content-based filtering can't understand natural language nuance like "mind-bending sci-fi" or "feel-good comedy with a twist."</p>
+  <p>RAG (Retrieval-Augmented Generation) solves this by combining <strong>semantic search</strong> (understanding the meaning of your query) with <strong>language generation</strong> (conversational responses). Instead of returning a ranked list, MovieMate explains <em>why</em> each recommendation fits your query.</p>
+
+  <h2>Architecture Deep Dive</h2>
+
+  <div class="arch-diagram">
+    <span class="hl">┌─────────────────────────────────────────────────────────────────┐</span><br>
+    <span class="hl">│                    MovieMate RAG Pipeline                      │</span><br>
+    <span class="hl">└─────────────────────────────────────────────────────────────────┘</span><br><br>
+    <span class="hl2">User Query</span> "sci-fi like Inception after 2010"<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+    <span class="hl3">┌─────────────────────┐</span><br>
+    <span class="hl3">│ Sentence Transformer │</span> all-MiniLM-L6-v2 (384-dim)<br>
+    <span class="hl3">│ Embedding           │</span> Query → [0.023, -0.145, ..., 0.087]<br>
+    <span class="hl3">└──────────┬──────────┘</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+    <span class="hl">┌─────────────────────┐</span><br>
+    <span class="hl">│ FAISS Index Search   │</span> Cosine similarity over 1,000 movie vectors<br>
+    <span class="hl">│ (IndexFlatIP)       │</span> Returns top-5 nearest neighbors<br>
+    <span class="hl">└──────────┬──────────┘</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+    <span class="purple">┌─────────────────────┐</span><br>
+    <span class="purple">│ Context Assembly    │</span> Top-5 movies + metadata → prompt context<br>
+    <span class="purple">└──────────┬──────────┘</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+    <span class="yellow">┌─────────────────────┐</span><br>
+    <span class="yellow">│ Gemini 1.5 Flash    │</span> Generates conversational response<br>
+    <span class="yellow">│ (LLM Generation)    │</span> with explanations + smart suggestions<br>
+    <span class="yellow">└──────────┬──────────┘</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+    <span class="green">Response + Dynamic Buttons</span> "More like this" / "Different genre" / "Surprise me"
+  </div>
+
+  <h2>The Embedding Layer</h2>
+  <p>MovieMate uses <strong>all-MiniLM-L6-v2</strong> from sentence-transformers — a 384-dimensional model trained on 1B+ sentence pairs. Each movie's title, genre, director, plot summary, and keywords are concatenated into a single text chunk and embedded into a 384-d vector. These vectors capture semantic meaning: "Inception" and "Interstellar" are close in embedding space because they share themes of time, reality, and ambition — even though their genre tags differ.</p>
+  <p>Pre-computed embeddings are stored as <code>.npy</code> files (two datasets: 1,000 movies from IMDb Top 1000, and 216 movies from a custom JSON), so the app starts in milliseconds — no encoding step needed at runtime.</p>
+
+  <h2>The FAISS Index</h2>
+  <p><a href="https://github.com/facebookresearch/faiss" target="_blank">FAISS</a> (Facebook AI Similarity Search) is Meta's library for efficient similarity search. MovieMate uses <code>IndexFlatIP</code> (inner product / cosine similarity) — exact search over 1,000 vectors takes &lt;1ms. For this dataset size, exact search is preferred over approximate nearest neighbor (ANN) methods because it guarantees no missed results.</p>
+  <p>When a user queries "movies like The Shawshank Redemption," the query is embedded, then FAISS finds the 5 movies whose vectors are closest in the 384-dimensional space. The results aren't just genre matches — they capture thematic, tonal, and narrative similarity.</p>
+
+  <h2>Multi-Turn Conversation</h2>
+  <p>MovieMate maintains conversation history in the prompt context. Follow-up queries like "more like that" or "something scarier" reference the previous results, enabling iterative refinement. The Gemini model receives the full conversation history plus the newly retrieved movie context, so it can track conversational intent across turns.</p>
+
+  <h2>Smart Suggestions</h2>
+  <p>Every response includes dynamic clickable buttons that adapt to the conversation. After a sci-fi recommendation, you might see "More sci-fi," "Something different," "Director films," or "Surprise me." These aren't hardcoded — they're generated by the LLM based on what makes sense in context.</p>
+
+  <h2>EDA & Visualizations</h2>
+  <p>Full exploratory data analysis on the IMDb dataset reveals: rating distributions by genre (drama skews higher), genre co-occurrence (action + thriller is the most common pair), metascore vs. user rating correlations (critics and audiences diverge on horror), and t-SNE visualizations of the embedding space showing how movies cluster by theme rather than just genre.</p>
+
+  <div class="pull-quote">"RAG doesn't just find movies — it understands why you'd want to watch them."</div>
+
+  <h2>Fallback Mode</h2>
+  <p>Without a Gemini API key, MovieMate falls back to a rule-based engine that parses queries with regex patterns and returns matching movies from the dataset. It's less conversational but fully functional — useful for demos, offline use, or cost-sensitive deployments.</p>
+
+  <h2>Tech Stack</h2>
+  <div class="info-box">
+    <div class="ib-label">Technologies Used</div>
+    <p><strong>Frontend:</strong> Gradio Web UI &nbsp;|&nbsp; <strong>LLM:</strong> Google Gemini 1.5 Flash &nbsp;|&nbsp; <strong>Embeddings:</strong> sentence-transformers (all-MiniLM-L6-v2, 384-dim) &nbsp;|&nbsp; <strong>Vector Search:</strong> FAISS (IndexFlatIP, cosine similarity) &nbsp;|&nbsp; <strong>Data:</strong> IMDb Top 1000 + custom 216-movie set &nbsp;|&nbsp; <strong>Pipeline:</strong> LangChain for RAG orchestration &nbsp;|&nbsp; <strong>Analysis:</strong> Jupyter, Pandas, NumPy, Matplotlib</p>
+  </div>
+
+  <div class="links-section">
+    <h3>Links & Resources</h3>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/hrishikesh-reddi/NLP_MovieMate" target="_blank">GitHub Repository</a><span>Full codebase: chatbot, search engine, EDA notebook, setup scripts</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://ai.google.dev/" target="_blank">Google Gemini API</a><span>Free tier available — 15 RPM, 1M tokens/day</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/facebookresearch/faiss" target="_blank">FAISS by Meta</a><span>Efficient similarity search — used at scale in Instagram, Facebook Search</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://www.sbert.net/" target="_blank">Sentence Transformers</a><span>Pre-trained embedding models for semantic similarity</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://arxiv.org/abs/2005.11401" target="_blank">Lewis et al. — Retrieval-Augmented Generation (2020)</a><span>The foundational RAG paper from Meta AI</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ PROJECT 4: ECOTRACK ═══════════════ -->
+<div class="page" id="page-proj-eco">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag" style="background:#dcfce7; color:#166534;">Full-Stack / AI</span>
+    <span class="article-date">Ongoing</span>
+  </div>
+
+  <h1><em>Ecological Footprint</em> Tracking System</h1>
+
+  <p class="article-lead">
+    Automated household CO2 emission estimation by processing utility bill images with PaddleOCR and Gemini-based structured data extraction — with a full React dashboard, gamified sustainability challenges, travel logging, and community leaderboards.
+  </p>
+
+  <h2>The Vision</h2>
+  <p>Most people have no idea how much carbon they produce. Utility bills show kilowatt-hours and gallons, but translating that into CO2 equivalents requires domain knowledge most people don't have. EcoTrack automates the entire pipeline: photograph a bill, get instant CO2 estimates, track your footprint over time, and compete with friends on sustainability challenges.</p>
+
+  <h2>The Scanning Pipeline</h2>
+
+  <div class="arch-diagram">
+    <span class="hl">┌─────────────────────────────────────────────────────────────────┐</span><br>
+    <span class="hl">│                    EcoTrack Scan Pipeline                       │</span><br>
+    <span class="hl">└─────────────────────────────────────────────────────────────────┘</span><br><br>
+    <span class="hl2">User uploads photo</span> (bill, receipt, fuel slip)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+    <span class="hl3">┌─────────────────────┐</span><br>
+    <span class="hl3">│ PaddleOCR           │</span> Text extraction from image<br>
+    <span class="hl3">│ (on-device / API)   │</span> Handles skewed, low-light photos<br>
+    <span class="hl3">└──────────┬──────────┘</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+    <span class="hl">┌─────────────────────┐</span><br>
+    <span class="hl">│ Gemini API          │</span> Structured extraction prompt<br>
+    <span class="hl">│ (1.5 Flash)         │</span> Raw text → {type, usage, unit, cost}<br>
+    <span class="hl">└──────────┬──────────┘</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+    <span class="purple">┌─────────────────────┐</span><br>
+    <span class="purple">│ CO2 Calculator      │</span> Emission factors × usage<br>
+    <span class="purple">│ (domain logic)      │</span> electricity: 0.82 kg/kWh<br>
+    <span class="purple">└──────────┬──────────┘</span> water: 0.16 kg/litre<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gas: 2.04 kg/m³<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+    <span class="yellow">Dashboard + Insights</span> Charts, trends, tree-equivalents, benchmarks
+  </div>
+
+  <h2>CO2 Calculation Methodology</h2>
+  <p>Each utility type has a standard emission factor. The system multiplies extracted usage by the appropriate factor and adds cost-efficiency metrics:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Utility</th><th>Emission Factor</th><th>Source</th></tr>
+      <tr><td>Electricity</td><td>0.82 kg CO2/kWh</td><td>India grid average (CEA, 2024)</td></tr>
+      <tr><td>Water</td><td>0.16 kg CO2/litre</td><td>Water treatment & distribution</td></tr>
+      <tr><td>Gas (PNG)</td><td>2.04 kg CO2/m³</td><td>Piped natural gas standard</td></tr>
+      <tr><td>LPG</td><td>2.98 kg CO2/kg</td><td>Cooking fuel standard</td></tr>
+      <tr><td>Fuel (petrol)</td><td>2.31 kg CO2/litre</td><td>Vehicle emission standard</td></tr>
+    </table>
+  </div>
+
+  <h2>Dashboard Features</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Feature</th><th>Description</th></tr>
+      <tr><td>Carbon Score</td><td>Overall footprint with trend over time</td></tr>
+      <tr><td>Breakdown Charts</td><td>Recharts-powered pie/bar charts by utility type</td></tr>
+      <tr><td>Travel Logging</td><td>GPS-based travel emission tracking (bus, car, flight)</td></tr>
+      <tr><td>Region Benchmarks</td><td>Compare your footprint against city/state averages</td></tr>
+      <tr><td>Challenges</td><td>Gamified goals: "Reduce electricity by 10% this month"</td></tr>
+      <tr><td>Leaderboard</td><td>Community rankings, points system, rewards</td></tr>
+      <tr><td>Tree Equivalents</td><td>"Your monthly CO2 = 6.3 trees needed to offset"</td></tr>
+    </table>
+  </div>
+
+  <h2>Full-Stack Architecture</h2>
+  <p>Built with React 19 + TypeScript on the frontend, Express (TypeScript) on the backend, and Google Gemini for the AI extraction layer. The app uses client-side localStorage for persistence (making it easy to demo), with a clean separation between the Vite-bundled SPA and the Express API server.</p>
+
+  <div class="callout">
+    <div class="c-label">Tech Architecture</div>
+    <div class="green">Frontend:</div> React 19, TypeScript, Vite, Tailwind CSS v4, Recharts, Framer Motion, React Router<br>
+    <div class="purple">Backend:</div> Express.js (TypeScript), running as Vite middleware<br>
+    <div class="yellow">AI Layer:</div> @google/genai SDK → Gemini 1.5 Flash for structured extraction<br>
+    <div class="green">OCR:</div> PaddleOCR for text extraction from bill images<br>
+    <div class="purple">Storage:</div> localStorage (eco_tracked_bills, eco_tracked_travel, eco_user_points)<br>
+    <div class="yellow">Deploy:</div> Vercel with automatic deployments from GitHub
+  </div>
+
+  <div class="pull-quote">"Photograph your electricity bill. Get your CO2 footprint in seconds. Compete with your neighbors on who produces less."</div>
+
+  <h2>Tech Stack</h2>
+  <div class="info-box">
+    <div class="ib-label">Technologies Used</div>
+    <p><strong>Frontend:</strong> React 19, TypeScript, Vite, Tailwind CSS v4, Recharts, Framer Motion, React Router &nbsp;|&nbsp; <strong>Backend:</strong> Express.js (TypeScript) &nbsp;|&nbsp; <strong>AI:</strong> Google Gemini 1.5 Flash, PaddleOCR &nbsp;|&nbsp; <strong>Storage:</strong> localStorage &nbsp;|&nbsp; <strong>Deploy:</strong> Vercel</p>
+  </div>
+
+  <div class="links-section">
+    <h3>Links</h3>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/hrishikesh-reddi/footprints-tracking" target="_blank">GitHub Repository</a><span>Full source code, submission report, and project documentation</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://footprints-tracking-main-9p653f8i1.vercel.app/report" target="_blank">Live Dashboard</a><span>Deployed on Vercel — try scanning a bill</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ PROJECT 5: QUANTUM PHARMA ═══════════════ -->
+<div class="page" id="page-proj-pharma">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag" style="background:#dbeafe; color:#1e40af;">Full-Stack</span>
+    <span class="article-date">September 2025</span>
+  </div>
+
+  <h1><em>Quantum Pharma</em> Discovery Platform</h1>
+
+  <p class="article-lead">
+    A pharmaceutical research platform built to streamline drug discovery — featuring compound database management, multi-criteria search across molecular properties, and a data-dense interface designed for researcher workflows.
+  </p>
+
+  <h2>The Drug Discovery Challenge</h2>
+  <p>Modern drug discovery generates enormous datasets. A single pharmaceutical pipeline might screen 10,000+ compounds, each characterized by molecular weight, logP (lipophilicity), target protein affinity, clinical trial phase, ADMET properties (Absorption, Distribution, Metabolism, Excretion, Toxicity), and hundreds of other descriptors. Finding the right compound requires cross-referencing multiple filters simultaneously — a task that's painfully slow in spreadsheets.</p>
+
+  <h2>What I Built</h2>
+  <p>Quantum Pharma is a web-based research platform that makes compound exploration fast and intuitive. Researchers can search by any combination of properties, filter by trial phase and target protein, rank results by relevance, and drill into individual compound profiles.</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Feature</th><th>Description</th></tr>
+      <tr><td>Compound Database</td><td>Structured storage of pharmaceutical compounds with full molecular metadata</td></tr>
+      <tr><td>Multi-Criteria Search</td><td>Search across molecular weight, logP, target, trial phase, ADMET profile</td></tr>
+      <tr><td>Advanced Filtering</td><td>Filter by protein target, clinical phase, solubility, toxicity flags</td></tr>
+      <tr><td>Result Ranking</td><td>Compounds ranked by relevance to query with weighted scoring</td></tr>
+      <tr><td>Compound Profiles</td><td>Detailed view: structure, properties, trial status, safety data</td></tr>
+      <tr><td>Responsive UI</td><td>Data-dense interface optimized for researcher workflows on desktop and tablet</td></tr>
+    </table>
+  </div>
+
+  <h2>Design Principles</h2>
+  <p>Research tools need to be information-dense without being overwhelming. The UI prioritizes scanability: key metrics are always visible, filters are collapsible, and results are presented in a table format that researchers can sort, export, and compare side-by-side.</p>
+
+  <div class="pull-quote">"In drug discovery, the bottleneck isn't data generation — it's data navigation. Quantum Pharma makes navigation fast."</div>
+
+  <h2>Tech Stack</h2>
+  <div class="info-box">
+    <div class="ib-label">Technologies Used</div>
+    <p><strong>Frontend:</strong> React &nbsp;|&nbsp; <strong>Backend:</strong> Node.js &nbsp;|&nbsp; <strong>Database:</strong> Compound management system with indexed search &nbsp;|&nbsp; <strong>Features:</strong> Multi-criteria filtering, weighted ranking, compound profiles &nbsp;|&nbsp; <strong>Deploy:</strong> Vercel</p>
+  </div>
+
+  <div class="links-section">
+    <h3>Links</h3>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://quantum-pharma-discovery-platform-main-1ki2dazbq.vercel.app/" target="_blank">Live Platform</a><span>Deployed on Vercel — explore the compound database</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ PROJECT 6: RESTAURANT MENU ═══════════════ -->
+<div class="page" id="page-proj-restaurant">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag" style="background:#ffedd5; color:#9a3412;">Full-Stack</span>
+    <span class="article-date">November 2025</span>
+  </div>
+
+  <h1><em>Restaurant Menu</em> Management System</h1>
+
+  <p class="article-lead">
+    A digital menu management system enabling restaurants to create, update, and display menu items with real-time pricing and descriptions — full CRUD operations in a clean, responsive interface.
+  </p>
+
+  <h2>The Problem</h2>
+  <p>Restaurants still manage menus in Google Docs, print them as PDFs, and update them manually when prices change. This creates version control nightmares, inconsistent pricing across platforms, and delays in reflecting seasonal changes. A digital-first approach solves all of this.</p>
+
+  <h2>What It Does</h2>
+  <p>Restaurants can manage their digital menus entirely through this web app. Add new dishes with descriptions and prices, update existing items, remove discontinued dishes, and see changes reflected instantly on the customer-facing menu display. The system handles the full CRUD lifecycle with immediate visual feedback.</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Feature</th><th>Description</th></tr>
+      <tr><td>Create</td><td>Add new menu items: name, description, price, category, image</td></tr>
+      <tr><td>Read</td><td>Browse menu organized by categories with search and filter</td></tr>
+      <tr><td>Update</td><td>Edit item details, pricing, and availability in real-time</td></tr>
+      <tr><td>Delete</td><td>Remove discontinued items with confirmation</td></tr>
+      <tr><td>Real-time Pricing</td><td>Instant price updates reflected across the platform</td></tr>
+      <tr><td>Responsive Design</td><td>Staff management on desktop, customer browsing on mobile</td></tr>
+      <tr><td>Category Management</td><td>Organize items by Appetizers, Mains, Desserts, Drinks, etc.</td></tr>
+    </table>
+  </div>
+
+  <h2>Architecture</h2>
+  <p>The app follows a clean client-server architecture. The React frontend handles all UI interactions and state management, while the backend provides a RESTful API for persistent data storage. Menu items are structured with consistent schemas to enable sorting, filtering, and export.</p>
+
+  <div class="callout">
+    <div class="c-label">API Design</div>
+    <div class="green">GET /api/menu</div> — List all items (with category filter)<br>
+    <div class="purple">POST /api/menu</div> — Create new menu item<br>
+    <div class="yellow">PUT /api/menu/:id</div> — Update existing item<br>
+    <div class="green">DELETE /api/menu/:id</div> — Remove item<br>
+    <div class="purple">GET /api/menu/:id</div> — Get single item details
+  </div>
+
+  <div class="pull-quote">"A menu isn't a document — it's a database. Treat it like one."</div>
+
+  <h2>Tech Stack</h2>
+  <div class="info-box">
+    <div class="ib-label">Technologies Used</div>
+    <p><strong>Frontend:</strong> React, Tailwind CSS &nbsp;|&nbsp; <strong>Backend:</strong> Node.js, Express &nbsp;|&nbsp; <strong>Database:</strong> MongoDB &nbsp;|&nbsp; <strong>API:</strong> RESTful CRUD endpoints &nbsp;|&nbsp; <strong>Deploy:</strong> Vercel</p>
+  </div>
+
+  <div class="links-section">
+    <h3>Links</h3>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://restaurant-menu-website-two.vercel.app/" target="_blank">Live Demo</a><span>Deployed on Vercel — browse the restaurant menu</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ PROJECT 7: S.S. RUBBERS ═══════════════ -->
+<div class="page" id="page-proj-rubbers">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag">Freelance</span>
+    <span class="article-date">2025</span>
+  </div>
+
+  <h1>S.S. Rubbers <em>Pvt. Ltd.</em> Website</h1>
+
+  <p class="article-lead">
+    A corporate website for an ISO 9001:2015-certified rubber and polymer components manufacturer serving Defence, Power, Marine, and Industrial clients — built as a freelance project.
+  </p>
+
+  <h2>The Client</h2>
+  <p>S.S. Rubbers Pvt. Ltd. is a Hyderabad-based manufacturer of precision rubber and polymer components. They serve high-reliability sectors including Defence, Power generation, Marine engineering, and Industrial applications. They needed a professional web presence that communicates trust and technical capability.</p>
+
+  <h2>What I Built</h2>
+  <p>Designed and deployed a complete corporate website including company overview, product catalogs organized by sector, certification showcases, and contact/inquiry forms. The site communicates the company's ISO 9001:2015 certification and domain expertise clearly.</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Section</th><th>Content</th></tr>
+      <tr><td>Homepage</td><td>Company overview, key certifications, hero section</td></tr>
+      <tr><td>Products</td><td>Catalog organized by Defence, Power, Marine, Industrial</td></tr>
+      <tr><td>About</td><td>Company history, ISO certifications, quality commitment</td></tr>
+      <tr><td>Contact</td><td>Inquiry forms, location, and contact details</td></tr>
+    </table>
+  </div>
+
+  <h2>Tech Stack</h2>
+  <div class="info-box">
+    <div class="ib-label">Technologies Used</div>
+    <p><strong>Frontend:</strong> HTML, CSS, JavaScript &nbsp;|&nbsp; <strong>Deploy:</strong> GitHub Pages</p>
+  </div>
+
+  <div class="links-section">
+    <h3>Links</h3>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://chaithanya812.github.io/CANVA/" target="_blank">Live Website</a><span>Deployed on GitHub Pages</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ PROJECT 8: INTERIOR DESIGN ═══════════════ -->
+<div class="page" id="page-proj-interior">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag">Freelance</span>
+    <span class="article-date">2025</span>
+  </div>
+
+  <h1><em>Interior Design</em> Studio Website</h1>
+
+  <p class="article-lead">
+    A responsive marketing website for an interior design business, showcasing services and project galleries — built with React and Gemini API-assisted development.
+  </p>
+
+  <h2>The Brief</h2>
+  <p>An interior design studio needed a visually compelling website to showcase their work, attract new clients, and communicate their design philosophy. The site needed to be responsive, fast, and easy to update.</p>
+
+  <h2>What I Built</h2>
+  <p>A modern, responsive marketing website with service showcases, project galleries with before/after displays, client testimonials, and contact forms. Built using React with Vite for fast development and optimized builds.</p>
+
+  <div class="callout">
+    <div class="c-label">Development Approach</div>
+    <div class="green">Framework:</div> React 19 + Vite<br>
+    <div class="purple">AI-Assisted:</div> Gemini API for rapid prototyping<br>
+    <div class="yellow">Styling:</div> Modern CSS with responsive design<br>
+    <div class="green">Deploy:</div> Vercel with automatic deployments<br>
+  </div>
+
+  <h2>Tech Stack</h2>
+  <div class="info-box">
+    <div class="ib-label">Technologies Used</div>
+    <p><strong>Frontend:</strong> React 19, TypeScript, Vite &nbsp;|&nbsp; <strong>AI:</strong> Google Gemini API for development assistance &nbsp;|&nbsp; <strong>Deploy:</strong> Vercel</p>
+  </div>
+
+  <div class="links-section">
+    <h3>Links</h3>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/hrishikesh-reddi/interior-design" target="_blank">GitHub Repository</a><span>Source code</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://interior-design-steel-one.vercel.app/" target="_blank">Live Website</a><span>Deployed on Vercel</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ PROJECT 9: DOCTOR PROFILE ═══════════════ -->
+<div class="page" id="page-proj-doctor">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag">Freelance</span>
+    <span class="article-date">2025</span>
+  </div>
+
+  <h1>Doctor Profile <em>& Booking</em> Website</h1>
+
+  <p class="article-lead">
+    A professional profile site for a medical practitioner with service listings, patient-facing information sections, and appointment booking — clean, trustworthy, and mobile-first.
+  </p>
+
+  <h2>The Need</h2>
+  <p>A medical practitioner needed a professional online presence — a site that communicates trust, lists services clearly, provides patient-facing information, and enables easy appointment booking. In healthcare, first impressions matter.</p>
+
+  <h2>What I Built</h2>
+  <p>A clean, professional profile website with doctor biography, qualifications, service listings with descriptions, patient information sections, and a booking flow. The design prioritizes readability and trust — critical for healthcare websites.</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Section</th><th>Content</th></tr>
+      <tr><td>Profile</td><td>Doctor bio, qualifications, photo, specializations</td></tr>
+      <tr><td>Services</td><td>Listed services with descriptions and pricing</td></tr>
+      <tr><td>Patient Info</td><td>Pre-visit instructions, insurance, FAQ</td></tr>
+      <tr><td>Booking</td><td>Appointment request form with scheduling</td></tr>
+      <tr><td>Contact</td><td>Clinic location, phone, email, hours</td></tr>
+    </table>
+  </div>
+
+  <h2>Tech Stack</h2>
+  <div class="info-box">
+    <div class="ib-label">Technologies Used</div>
+    <p><strong>Frontend:</strong> React, Tailwind CSS &nbsp;|&nbsp; <strong>Features:</strong> Responsive design, booking forms &nbsp;|&nbsp; <strong>Deploy:</strong> Vercel</p>
+  </div>
+
+  <div class="links-section">
+    <h3>Links</h3>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://doctor-95tg.vercel.app/#profile" target="_blank">Live Website</a><span>Deployed on Vercel</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ PROJECT 10: HIVE COLONY ═══════════════ -->
+<div class="page" id="page-proj-hive">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag" style="background:#fef3c7; color:#92400e;">Full-Stack / MERN</span>
+    <span class="article-date">2025</span>
+  </div>
+
+  <h1><em>Hive</em> — Social Media Feed</h1>
+
+  <p class="article-lead">
+    A full-stack social networking application built with MongoDB, Express.js, React, and Node.js — featuring real-time notifications via Socket.io, JWT authentication, image uploads, follow/unfollow mechanics, and server-side rendered public profiles via EJS.
+  </p>
+
+  <h2>Why Build a Social Network?</h2>
+  <p>Every social media platform is fundamentally the same architecture: users, posts, follows, feeds, notifications. Building one from scratch forces you to master the full MERN stack — authentication, real-time communication, database design, API design, and frontend state management — all in a single project. Hive was designed as a comprehensive full-stack assignment to prove end-to-end engineering capability.</p>
+
+  <h2>Architecture</h2>
+
+  <div class="arch-diagram">
+    <span class="hl">┌─────────────────────────────────────────────────────────────────┐</span><br>
+    <span class="hl">│                    Hive Architecture                            │</span><br>
+    <span class="hl">└─────────────────────────────────────────────────────────────────┘</span><br><br>
+    <span class="hl2">React SPA</span> (Vite) &nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp; <span class="hl3">Express API</span> (Node.js)<br>
+    &nbsp;&nbsp;├─ Pages: Home, Login, Profile, Notifications &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp; ├─ Auth: JWT middleware<br>
+    &nbsp;&nbsp;├─ FeedCard, Navbar, etc. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp; ├─ Routes: REST API<br>
+    &nbsp;&nbsp;└─ AppContext (auth + Socket.io) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp; ├─ Models: Mongoose schemas<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp; └─ Socket.io (real-time)<br>
+    <span class="hl2">─────── Frontend (port 3000) ───────</span>│<span class="hl3">─────── Backend (port 4000) ───────</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    <span class="yellow">MongoDB</span> (Mongoose) &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp; <span class="purple">Cloudinary</span> (image uploads)<br>
+    &nbsp;&nbsp;├─ User &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp; ├─ Multer (upload middleware)<br>
+    &nbsp;&nbsp;├─ Post &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp; └─ CDN delivery<br>
+    &nbsp;&nbsp;├─ Follow &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;└─ Notification &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    <span class="hl3">EJS Templates</span> → Server-rendered public profiles at /u/:username
+  </div>
+
+  <h2>Key Features</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Feature</th><th>Implementation</th></tr>
+      <tr><td>JWT Authentication</td><td>Register/login with secure token-based auth, auto-attach to API calls</td></tr>
+      <tr><td>Personalized Feed</td><td>Posts from followed users, sorted by recency</td></tr>
+      <tr><td>Explore Feed</td><td>Public trending posts for discovery</td></tr>
+      <tr><td>Posts & Comments</td><td>Create/delete posts, like/comment with live counts</td></tr>
+      <tr><td>Follow System</td><td>Follow/unfollow users, follower/following counts</td></tr>
+      <tr><td>Real-time Notifications</td><td>Socket.io broadcasts: new likes, comments, follows</td></tr>
+      <tr><td>Image Upload</td><td>Cloudinary + Multer for post images with CDN delivery</td></tr>
+      <tr><td>Public Profiles</td><td>Server-side rendered EJS pages at /u/:username (JSP-equivalent)</td></tr>
+      <tr><td>Open Graph Tags</td><td>OG meta tags for link previews on social platforms</td></tr>
+    </table>
+  </div>
+
+  <h2>Real-Time with Socket.io</h2>
+  <p>Notifications don't require page refreshes. When someone likes your post, comments, or follows you, the server broadcasts a <code>notification:new</code> event to your personal room via Socket.io. The client receives it instantly and updates the notification count badge. This creates the fluid, "live" feel of real social platforms.</p>
+
+  <div class="callout">
+    <div class="c-label">Socket.io Events</div>
+    <div class="green">Server → Client:</div><br>
+    &nbsp;&nbsp;notification:new — new like, comment, or follow<br>
+    &nbsp;&nbsp;post:liked — live like count update<br>
+    &nbsp;&nbsp;post:commented — new comment appears<br>
+    <div class="purple">Client → Server:</div><br>
+    &nbsp;&nbsp;join — joins personal room on login (user:&lt;userId&gt;)
+  </div>
+
+  <h2>Public Profiles via EJS</h2>
+  <p>Unlike the React SPA, public profile pages at <code>/u/:username</code> are server-side rendered using EJS (a JSP-equivalent template engine). This means they're accessible without login, load fast (no JavaScript bundle), and include proper Open Graph meta tags so links shared on Twitter/Discord/Slack show a rich preview with bio, stats, and recent posts.</p>
+
+  <h2>Database Schema</h2>
+  <div class="callout">
+    <div class="c-label">Mongoose Models</div>
+    <div class="green">User:</div> username, email, password (bcrypt), bio, avatar, timestamps<br>
+    <div class="purple">Post:</div> author (ref User), content, image, likes[], comments[], timestamps<br>
+    <div class="yellow">Follow:</div> follower (ref User), following (ref User), unique compound index<br>
+    <div class="green">Notification:</div> recipient, sender, type (like/comment/follow), read status
+  </div>
+
+  <div class="pull-quote">"Every social media app is the same architecture. Building it from scratch teaches you all of it."</div>
+
+  <h2>Tech Stack</h2>
+  <div class="info-box">
+    <div class="ib-label">Technologies Used</div>
+    <p><strong>Database:</strong> MongoDB + Mongoose &nbsp;|&nbsp; <strong>Backend:</strong> Node.js + Express.js &nbsp;|&nbsp; <strong>Auth:</strong> JWT (jsonwebtoken) &nbsp;|&nbsp; <strong>Real-time:</strong> Socket.io &nbsp;|&nbsp; <strong>Image Upload:</strong> Cloudinary + Multer &nbsp;|&nbsp; <strong>Template Engine:</strong> EJS (JSP-equivalent) &nbsp;|&nbsp; <strong>Frontend:</strong> React 19 + Vite &nbsp;|&nbsp; <strong>Styling:</strong> Tailwind CSS v4 &nbsp;|&nbsp; <strong>State:</strong> React Context + localStorage &nbsp;|&nbsp; <strong>Routing:</strong> React Router v7 &nbsp;|&nbsp; <strong>Animations:</strong> Framer Motion &nbsp;|&nbsp; <strong>Deploy:</strong> Vercel</p>
+  </div>
+
+  <div class="links-section">
+    <h3>Links</h3>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/hrishikesh-reddi/Hive-colony" target="_blank">GitHub Repository</a><span>Full MERN stack codebase with API docs and setup instructions</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://hive-colony.vercel.app/" target="_blank">Live Application</a><span>Deployed on Vercel — register and try the social feed</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ ARTICLE 6: HERMES AGENT ═══════════════ -->
+<div class="page" id="page-hermes">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag" style="background:#ede9fe; color:#5b21b6;">Agents</span>
+    <span class="article-date">February 2026</span>
+  </div>
+
+  <h1><em>Hermes Agent</em> — When AI Agents Start Collaborating</h1>
+
+  <p class="article-lead">
+    Single-agent systems hit a ceiling fast. You give an LLM a tool, it uses the tool, it returns a result. But what happens when the task requires research, code generation, review, and deployment — all in sequence, all with different expertise? That's where multi-agent orchestration enters, and frameworks like Hermes Agent are making it practical.
+  </p>
+
+  <h2>The Single-Agent Bottleneck</h2>
+  <p>Most AI agent demos show one model doing everything: reading files, writing code, running tests, and deploying. This works for simple tasks. But scale the complexity and the single-agent approach breaks down in predictable ways:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Problem</th><th>Why It Happens</th></tr>
+      <tr><td>Context window overflow</td><td>One agent accumulates all tool outputs, logs, and intermediate reasoning — eventually exceeding token limits</td></tr>
+      <tr><td>Role confusion</td><td>A model asked to be "researcher + coder + reviewer" produces weaker output in each role than a specialized agent</td></tr>
+      <tr><td>No peer review</td><td>Single agents can't catch their own mistakes — there's no adversarial check on reasoning or code quality</td></tr>
+      <tr><td>Sequential bottleneck</td><td>Every subtask waits for the previous one, even when independent tasks could run in parallel</td></tr>
+    </table>
+  </div>
+
+  <p>Multi-agent systems solve these by decomposing work across specialized agents, each with focused context, specific tools, and clear responsibilities.</p>
+
+  <h2>Orchestrator-Worker Architecture</h2>
+  <p>The most common pattern in production multi-agent systems is orchestrator-worker: a central coordinator agent decomposes the task, delegates subtasks to specialist agents, collects results, and synthesizes the final output.</p>
+
+  <div class="arch-diagram">
+    <span class="hl">┌─────────────────────────────────────────────────────────────────────┐</span><br>
+    <span class="hl">│                   Multi-Agent Orchestrator                         │</span><br>
+    <span class="hl">└─────────────────────────────────────────────────────────────────────┘</span><br><br>
+    <span class="yellow">User Query</span> → <span class="purple">Orchestrator Agent</span> (planner)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="green">Research Agent</span> — web search, document retrieval<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="green">Code Agent</span> — file editing, test generation<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="green">Review Agent</span> — code review, fact-checking<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="green">Deploy Agent</span> — build, test, push<br>
+    <span class="hl">───────────────────────────────────────────────────────────────────</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+    <span class="yellow">Synthesized Result</span> ← orchestrator merges all agent outputs
+  </div>
+
+  <h2>How Hermes Agent Works</h2>
+  <p>Hermes Agent provides a framework for defining, running, and monitoring multi-agent workflows. The core abstraction is simple: agents are stateful workers with defined roles, tools, and communication channels. The orchestrator manages the workflow graph — deciding which agents run, in what order, and how results flow between them.</p>
+
+  <div class="callout">
+    <div class="c-label">Core Concepts</div>
+    <div class="green">Agent:</div> A stateful worker with a system prompt, tool access, and message history<br>
+    <div class="purple">Orchestrator:</div> Manages task decomposition, agent assignment, and result synthesis<br>
+    <div class="yellow">Tool:</div> External function the agent can call (API, file system, database, web search)<br>
+    <div class="green">Handoff:</div> Structured message passing between agents with context injection
+  </div>
+
+  <p>The key insight is that each agent operates with minimal context — only what's relevant to its specific subtask. The research agent doesn't see code. The code agent doesn't see raw search results. This keeps context windows manageable and forces each agent to focus.</p>
+
+  <h2>Tool-Use and MCP</h2>
+  <p>Modern agent frameworks standardize tool-use through protocols like MCP (Model Context Protocol). Instead of each agent hardcoding tool integrations, tools are registered as MCP servers and agents discover them at runtime. This means you can swap tool implementations without changing agent prompts, add new tools without redeploying, and share tools across agent teams.</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Framework</th><th>Approach</th><th>Strengths</th></tr>
+      <tr><td>Hermes Agent</td><td>Orchestrator-worker with MCP tools</td><td>Flexibility, tool discovery, structured handoffs</td></tr>
+      <tr><td>LangGraph</td><td>State machine with conditional edges</td><td>Complex control flow, cycles, human-in-the-loop</td></tr>
+      <tr><td>CrewAI</td><td>Role-based agents with backstories</td><td>Easy onboarding, role specialization</td></tr>
+      <tr><td>AutoGen</td><td>Agent conversations with group chat</td><td>Research-oriented, conversational patterns</td></tr>
+      <tr><td>OpenAI Agents SDK</td><td>Handoff-based with built-in tracing</td><td>Tight OpenAI integration, guardrails</td></tr>
+    </table>
+  </div>
+
+  <h2>When Multi-Agent Beats Single-Agent</h2>
+  <p>Not every task needs multiple agents. Here's when the overhead is worth it:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Use Case</th><th>Why Multi-Agent Wins</th></tr>
+      <tr><td>Code generation + review</td><td>Separate coder and reviewer agents catch more bugs than self-review</td></tr>
+      <tr><td>Research + synthesis</td><td>Research agent gathers facts, synthesis agent composes — avoids context pollution</td></tr>
+      <tr><td>Multi-file refactoring</td><td>Parallel agents edit different files, orchestrator resolves conflicts</td></tr>
+      <tr><td>Data pipeline construction</td><td>Extract, transform, validate, load — each step a specialist</td></tr>
+      <tr><td>Complex decision-making</td><td>Adversarial agents debate before the orchestrator decides</td></tr>
+    </table>
+  </div>
+
+  <div class="pull-quote">"The future of AI agents isn't one model that does everything. It's teams of specialized models that do specific things well."</div>
+
+  <h2>Consensus and Conflict Resolution</h2>
+  <p>When multiple agents produce conflicting outputs — one says "use React" and another says "use Vue" — the orchestrator needs a resolution strategy. Common approaches include voting (majority wins), confidence scoring (highest confidence agent decides), and escalation (human-in-the-loop for ambiguous cases). Hermes Agent supports all three, letting you configure the resolution strategy per workflow.</p>
+
+  <h2>Production Considerations</h2>
+  <p>Multi-agent systems introduce real engineering challenges:</p>
+
+  <div class="callout">
+    <div class="c-label">Watch Out For</div>
+    <div class="green">Latency:</div> Sequential agent chains multiply response time — parallelize where possible<br>
+    <div class="purple">Cost:</div> Multiple agents = multiple API calls — monitor token usage per agent<br>
+    <div class="yellow">Debugging:</div> Distributed reasoning is hard to trace — use structured logging and agent-specific traces<br>
+    <div class="green">Failure modes:</div> One bad agent can poison the entire chain — add validation gates between handoffs
+  </div>
+
+  <h2>What's Next</h2>
+  <p>Multi-agent systems are moving from research labs to production. The next frontier is agent-to-agent negotiation across organizations — agents from different companies collaborating on shared tasks with trust boundaries and permission scoping. Protocols like MCP are laying the groundwork for this interoperability.</p>
+
+  <h2>References</h2>
+  <div class="links-section">
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/microsoft/autogen" target="_blank">AutoGen — Microsoft Research</a><span>Multi-agent conversation framework</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/langchain-ai/langgraph" target="_blank">LangGraph — LangChain</a><span>State machine agent orchestration</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://docs.crewai.com/" target="_blank">CrewAI Documentation</a><span>Role-based multi-agent framework</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://openai.github.io/openai-agents-python/" target="_blank">OpenAI Agents SDK</a><span>Handoff-based agent orchestration</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ ARTICLE 7: REASONING MODELS ═══════════════ -->
+<div class="page" id="page-reasoning">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag" style="background:#dbeafe; color:#1e40af;">Gen AI</span>
+    <span class="article-date">March 2026</span>
+  </div>
+
+  <h1><em>Reasoning Models</em> — The Inference-Time Compute Revolution</h1>
+
+  <p class="article-lead">
+    For most of LLM history, the recipe was simple: throw more data and compute at training, get a smarter model. But in late 2024, a new paradigm emerged — giving models more time to think at inference time. The result: o1, o4-mini, DeepSeek-R1, and Claude's extended thinking. Reasoning models don't just answer. They reason.
+  </p>
+
+  <h2>What Changed</h2>
+  <p>Traditional language models generate tokens sequentially — each token is produced in one forward pass. There's no "thinking" step. A reasoning model introduces an explicit thinking phase: before producing the final answer, the model generates a chain of internal reasoning tokens that explore possibilities, verify assumptions, and self-correct.</p>
+
+  <div class="arch-diagram">
+    <span class="hl">┌──────────────────────────────────────────────────────────────────┐</span><br>
+    <span class="hl">│              Standard LLM vs Reasoning Model                     │</span><br>
+    <span class="hl">└──────────────────────────────────────────────────────────────────┘</span><br><br>
+    <span class="purple">Standard LLM:</span><br>
+    &nbsp;&nbsp;Query → [forward pass] → Answer<br><br>
+    <span class="yellow">Reasoning Model:</span><br>
+    &nbsp;&nbsp;Query → <span class="green">[thinking tokens]</span> → [verification] → [self-correction] → Answer<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── can be 100-1000s of internal tokens ──┘
+  </div>
+
+  <p>This is what OpenAI calls "inference-time compute" — spending more compute during the forward pass to produce better outputs. The model essentially gets a budget of thinking tokens, and it uses them to improve answer quality.</p>
+
+  <h2>The Major Players</h2>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Model</th><th>Provider</th><th>Approach</th></tr>
+      <tr><td>o4-mini</td><td>OpenAI</td><td>Chain-of-thought reasoning with reinforcement learning</td></tr>
+      <tr><td>o3</td><td>OpenAI</td><td>Full reasoning model, stronger on coding and math</td></tr>
+      <tr><td>DeepSeek-R1</td><td>DeepSeek</td><td>Open-weight reasoning model, trained for $6M</td></tr>
+      <tr><td>Claude 3.7 Sonnet</td><td>Anthropic</td><td>Extended thinking mode, hybrid reasoning</td></tr>
+      <tr><td>Gemini 2.5 Pro</td><td>Google</td><td>"Thinking" mode with adaptive compute</td></tr>
+      <tr><td>QwQ</td><td>Alibaba</td><td>Open-weight reasoning model from Qwen team</td></tr>
+    </table>
+  </div>
+
+  <h2>How Reasoning Training Works</h2>
+  <p>Reasoning models are typically trained in two phases. First, supervised fine-tuning on chain-of-thought examples teaches the model the format of reasoning. Second, reinforcement learning — often GRPO (Group Relative Policy Optimization) — rewards the model for arriving at correct answers through logical reasoning chains.</p>
+
+  <div class="callout">
+    <div class="c-label">DeepSeek-R1 Training Pipeline</div>
+    <div class="green">Phase 1 — Cold Start:</div> Fine-tune base model on thousands of reasoning examples<br>
+    <div class="purple">Phase 2 — RL Training:</div> GRPO rewards correct answers, penalizes reasoning errors<br>
+    <div class="yellow">Phase 3 — Rejection Sampling:</div> Generate many answers, keep only correct ones for next iteration<br>
+    <div class="green">Phase 4 — Final RL:</div> Polish with additional reward shaping for helpfulness and safety
+  </div>
+
+  <p>The breakthrough insight: you don't need to manually write reasoning chains for millions of examples. The model learns to reason through self-play — generating many candidate reasoning paths, keeping the ones that lead to correct answers, and reinforcing those patterns.</p>
+
+  <h2>The Cost of Thinking</h2>
+  <p>Reasoning tokens aren't free. They consume context window space and increase latency. A standard query might use 200 tokens. The same query through a reasoning model might use 2,000-5,000 tokens (including thinking). This means:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Metric</th><th>Standard LLM</th><th>Reasoning Model</th></tr>
+      <tr><td>Tokens per query</td><td>~200-500</td><td>~2,000-10,000</td></tr>
+      <tr><td>Latency</td><td>200-800ms</td><td>2-15 seconds</td></tr>
+      <tr><td>Cost per query</td><td>$0.001-0.005</td><td>$0.01-0.05</td></tr>
+      <tr><td>Accuracy (math)</td><td>60-70%</td><td>85-95%</td></tr>
+      <tr><td>Accuracy (reasoning)</td><td>50-65%</td><td>80-92%</td></tr>
+    </table>
+  </div>
+
+  <p>The tradeoff is clear: 10x the cost and latency for significantly better accuracy on complex tasks. For simple queries ("what's the capital of France?"), reasoning models are wasteful. For complex queries ("prove this theorem" or "debug this race condition"), they're transformative.</p>
+
+  <h2>When to Use Reasoning Models</h2>
+  <p>The decision framework is straightforward:</p>
+
+  <div class="callout">
+    <div class="c-label">Use Reasoning Models When:</div>
+    <div class="green">✓</div> Task requires multi-step logical deduction<br>
+    <div class="green">✓</div> Math, code, or scientific reasoning is involved<br>
+    <div class="green">✓</div> Ambiguity requires disambiguation before answering<br>
+    <div class="green">✓</div> Accuracy matters more than speed<br>
+    <div class="purple">Use Standard Models When:</div><br>
+    &nbsp;&nbsp;• Task is straightforward (summarization, classification, extraction)<br>
+    &nbsp;&nbsp;• Latency matters (real-time chat, autocomplete)<br>
+    &nbsp;&nbsp;• Cost is a constraint (high-volume APIs)
+  </div>
+
+  <h2>DeepSeek-R1: The Open-Weight Disruptor</h2>
+  <p>DeepSeek-R1 changed the game by proving that reasoning capability doesn't require a $100M training budget. Trained for approximately $6M on a cluster of H800 GPUs, R1 matches o1-preview on many benchmarks while being fully open-weight. You can download it, fine-tune it, and run it locally.</p>
+
+  <p>The implications are profound: reasoning capability is no longer a moat for closed-source providers. Any organization can now build reasoning-powered applications on top of open-weight models, fine-tuned for their specific domain.</p>
+
+  <div class="pull-quote">"The most important shift in AI isn't bigger models. It's smarter inference. Give the same model more time to think, and it produces dramatically better answers."</div>
+
+  <h2>Adaptive Compute</h2>
+  <p>The next frontier is adaptive compute — models that automatically decide how much to think based on query complexity. Simple questions get quick answers. Hard questions get extended reasoning. Gemini 2.5 Pro and Claude's extended thinking both support this, and it's likely the default mode for all reasoning models within the year.</p>
+
+  <h2>References</h2>
+  <div class="links-section">
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://arxiv.org/abs/2501.12948" target="_blank">DeepSeek-R1 Paper</a><span>DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://openai.com/index/reasoning/" target="_blank">OpenAI Reasoning Models</a><span>Introducing o1 and the reasoning paradigm</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://docs.anthropic.com/en/docs/about-claude/models" target="_blank">Claude Extended Thinking</a><span>Anthropic's extended thinking documentation</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ ARTICLE 8: MCP ═══════════════ -->
+<div class="page" id="page-mcp">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag" style="background:#f3e8ff; color:#6b21a8;">Protocol</span>
+    <span class="article-date">April 2026</span>
+  </div>
+
+  <h1><em>MCP</em> — The USB-C of AI Agents</h1>
+
+  <p class="article-lead">
+    Every AI assistant today needs to connect to external tools — databases, APIs, file systems, browsers. Before MCP, every integration was bespoke: Claude had its tool format, OpenAI had another, LangChain had a third. MCP (Model Context Protocol) standardizes this. One protocol, every tool. It's the USB-C of the AI ecosystem.
+  </p>
+
+  <h2>The Problem MCP Solves</h2>
+  <p>Imagine every device manufacturer invented their own charging port. That was the state of AI tool integration in 2024. Each LLM provider had a different format for defining tools, passing context, and handling responses. Building a tool meant building N integrations for N providers.</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Before MCP</th><th>After MCP</th></tr>
+      <tr><td>Tool formats: OpenAI function calling, Anthropic tool_use, LangChain tools, custom schemas</td><td>One standard format for all providers</td></tr>
+      <tr><td>Adding a new tool = N integrations</td><td>Adding a new tool = 1 MCP server</td></tr>
+      <tr><td>Context injection: provider-specific</td><td>Standardized resource protocol</td></tr>
+      <tr><td>Prompt templates: hardcoded per model</td><td>Dynamic prompt injection via MCP prompts</td></tr>
+    </table>
+  </div>
+
+  <h2>How MCP Works</h2>
+  <p>MCP follows a client-server architecture. The AI application (like Claude Desktop or an IDE) is the MCP client. External tools (databases, APIs, file systems) are MCP servers. The client discovers available tools, resources, and prompts from each server at runtime.</p>
+
+  <div class="arch-diagram">
+    <span class="hl">┌──────────────────────────────────────────────────────────────────┐</span><br>
+    <span class="hl">│                    MCP Architecture                              │</span><br>
+    <span class="hl">└──────────────────────────────────────────────────────────────────┘</span><br><br>
+    <span class="yellow">MCP Host</span> (Claude Desktop / IDE / Custom App)<br>
+    &nbsp;&nbsp;├── <span class="purple">MCP Client</span> — discovers and connects to servers<br>
+    &nbsp;&nbsp;└── LLM — receives tool definitions, generates calls<br><br>
+    <span class="green">MCP Servers:</span><br>
+    &nbsp;&nbsp;├── File System Server — read/write files<br>
+    &nbsp;&nbsp;├── Database Server — query SQL/NoSQL<br>
+    &nbsp;&nbsp;├── API Server — REST/GraphQL calls<br>
+    &nbsp;&nbsp;├── Browser Server — web scraping, screenshots<br>
+    &nbsp;&nbsp;└── Custom Servers — your own tools<br><br>
+    <span class="hl3">Protocol:</span> JSON-RPC 2.0 over stdio or HTTP+SSE
+  </div>
+
+  <p>The three core primitives MCP exposes are:</p>
+
+  <div class="callout">
+    <div class="c-label">MCP Primitives</div>
+    <div class="green">Tools:</div> Functions the model can call (like API endpoints, database queries, file operations)<br>
+    <div class="purple">Resources:</div> Data the model can read (like file contents, database schemas, API documentation)<br>
+    <div class="yellow">Prompts:</div> Pre-built prompt templates the server provides for common workflows
+  </div>
+
+  <h2>MCP's Journey: From Lab to Linux Foundation</h2>
+  <p>Anthropic developed MCP and released it as an open standard in late 2024. By early 2025, it had been adopted by OpenAI, Google, Microsoft, and dozens of IDE and tool providers. In March 2026, MCP was donated to the Linux Foundation, cementing it as a community-governed standard.</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Milestone</th><th>Date</th><th>Significance</th></tr>
+      <tr><td>Anthropic open-sources MCP</td><td>Nov 2024</td><td>Initial release as open protocol</td></tr>
+      <tr><td>OpenAI adopts MCP</td><td>Mar 2025</td><td>Closes major provider gap</td></tr>
+      <tr><td>97M+ monthly SDK downloads</td><td>Jun 2025</td><td>Massive adoption signal</td></tr>
+      <tr><td>Linux Foundation governance</td><td>Mar 2026</td><td>Community ownership, long-term stability</td></tr>
+      <tr><td>1,000+ MCP servers</td><td>Jun 2026</td><td>Rich ecosystem of ready-made integrations</td></tr>
+    </table>
+  </div>
+
+  <h2>Building an MCP Server</h2>
+  <p>An MCP server is a lightweight process that communicates via JSON-RPC. Here's the minimal structure:</p>
+
+  <div class="callout">
+    <div class="c-label">MCP Server Lifecycle</div>
+    <div class="green">1. Initialize:</div> Client sends capabilities, server responds with its tools/resources<br>
+    <div class="purple">2. Discover:</div> Client lists available tools (name, description, input schema)<br>
+    <div class="yellow">3. Call:</div> Client invokes a tool with arguments, server returns result<br>
+    <div class="green">4. Resources:</div> Client can read resources (files, DB schemas) as context<br>
+    <div class="purple">5. Prompts:</div> Server can provide prompt templates for common workflows
+  </div>
+
+  <p>Servers can run locally (stdio transport) or remotely (HTTP+SSE transport). Local servers are simpler and more secure — the tool runs on your machine. Remote servers enable sharing tools across teams.</p>
+
+  <h2>MCP in Practice</h2>
+  <p>The real power of MCP is composability. You can chain multiple MCP servers together: a file system server reads your code, a database server queries your schema, and an API server calls your deployment pipeline. The LLM orchestrates across all of them through a single interface.</p>
+
+  <div class="callout">
+    <div class="c-label">Common MCP Servers</div>
+    <div class="green">File System:</div> Read, write, search files on your machine<br>
+    <div class="purple">PostgreSQL:</div> Query databases, inspect schemas, run migrations<br>
+    <div class="yellow">GitHub:</div> Create issues, manage PRs, read repo contents<br>
+    <div class="green">Puppeteer:</div> Browser automation, screenshots, web scraping<br>
+    <div class="purple">Docker:</div> Manage containers, images, compose stacks<br>
+    <div class="yellow">Slack:</div> Send messages, read channels, manage workspace
+  </div>
+
+  <div class="pull-quote">"MCP turned AI tool integration from a wiring problem into a plug-and-play standard. One protocol, every tool, every provider."</div>
+
+  <h2>Security Considerations</h2>
+  <p>MCP servers have full access to their underlying resources. A file system server can read your entire disk. A database server can delete tables. This makes MCP server trust a critical security decision. Best practices include:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Practice</th><th>Why It Matters</th></tr>
+      <tr><td>Audit MCP servers before installing</td><td>Servers run with full permissions — malicious servers can exfiltrate data</td></tr>
+      <tr><td>Use permission scoping</td><td>Restrict servers to specific directories, databases, or API endpoints</td></tr>
+      <tr><td>Run servers in containers</td><td>Isolate server processes from your main system</td></tr>
+      <tr><td>Monitor tool calls</td><td>Log all MCP invocations for audit and debugging</td></tr>
+      <tr><td>Prefer local over remote</td><td>Local servers keep data on your machine</td></tr>
+    </table>
+  </div>
+
+  <h2>What's Next</h2>
+  <p>MCP is evolving toward agent-to-agent collaboration. Future versions will support agent discovery (finding other agents), trust negotiation (sharing permissions), and cross-organization workflows. Combined with multi-agent frameworks, MCP will enable AI systems that collaborate across organizational boundaries — sharing tools, data, and context through a standardized protocol.</p>
+
+  <h2>References</h2>
+  <div class="links-section">
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://modelcontextprotocol.io/" target="_blank">MCP Official Documentation</a><span>Protocol specification, guides, and examples</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/modelcontextprotocol" target="_blank">MCP GitHub Organization</a><span>Reference implementations and SDKs</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://modelcontextprotocol.io/introduction" target="_blank">MCP Introduction</a><span>Getting started with the protocol</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ ARTICLE 9: EDGE AI ═══════════════ -->
+<div class="page" id="page-edgeai">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag tag-green">Hardware</span>
+    <span class="article-date">May 2026</span>
+  </div>
+
+  <h1><em>Edge AI</em> — Why 80% of Inference Is Moving to Your Device</h1>
+
+  <p class="article-lead">
+    The cloud was supposed to be where all AI inference happens. It's not happening that way. In 2026, every major chipmaker ships NPUs in their processors, small language models rival last year's large ones, and privacy regulations make on-device inference not just faster — but legally necessary.
+  </p>
+
+  <h2>The NPU Revolution</h2>
+  <p>Neural Processing Units have gone from marketing buzzword to silicon reality. Every major processor line now includes dedicated AI acceleration hardware:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Platform</th><th>NPU</th><th>Performance</th></tr>
+      <tr><td>Apple M4</td><td>Apple Neural Engine</td><td>38 TOPS, unified memory architecture</td></tr>
+      <tr><td>Qualcomm Snapdragon X</td><td>Hexagon NPU</td><td>45 TOPS, INT4/INT8 support</td></tr>
+      <tr><td>Intel Lunar Lake</td><td>NPU 4</td><td>48 TOPS, VPU for video AI</td></tr>
+      <tr><td>AMD Ryzen AI</td><td>XDNA 2</td><td>50 TOPS, hybrid CPU+NPU scheduling</td></tr>
+      <tr><td>MediaTek Dimensity 9400</td><td>APU 890</td><td>46 TOPS, on-device LLM support</td></tr>
+    </table>
+  </div>
+
+  <p>TOPS (Tera Operations Per Second) measures raw AI throughput. A 45 TOPS NPU can run a 3B parameter model at interactive speeds — fast enough for real-time chat, code completion, and image understanding without touching the cloud.</p>
+
+  <h2>Small Models, Big Capability</h2>
+  <p>The other half of the edge AI story is model efficiency. In 2023, you needed a 7B model for reasonable quality. In 2026, 1-3B models match or exceed those capabilities:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Model</th><th>Size</th><th>MMLU</th><th>Key Feature</th></tr>
+      <tr><td>Phi-4 Mini</td><td>3.8B</td><td>68%</td><td>Best-in-class for its size, Microsoft Research</td></tr>
+      <tr><td>Llama 3.2</td><td>1B / 3B</td><td>60-65%</td><td>Meta's edge-optimized models, multilingual</td></tr>
+      <tr><td>Gemma 3</td><td>1B / 4B</td><td>62-68%</td><td>Google's open models, strong on reasoning</td></tr>
+      <tr><td>Mistral Small</td><td>24B</td><td>78%</td><td>Distilled from Mistral Large, edge-deployable</td></tr>
+      <tr><td>SmolLM2</td><td>135M-1.7B</td><td>50-58%</td><td>Extremely small, runs on phones</td></tr>
+    </table>
+  </div>
+
+  <h2>Quantization: Making Models Fit</h2>
+  <p>Running a model on edge hardware requires shrinking it. Quantization reduces model precision — from 32-bit floating point (FP32) to 8-bit integers (INT8) or even 4-bit integers (INT4). The tradeoff: smaller models run faster and use less memory, with modest accuracy loss.</p>
+
+  <div class="callout">
+    <div class="c-label">Quantization Levels</div>
+    <div class="green">FP32 → FP16:</div> Halves memory, ~0% accuracy loss, standard for training<br>
+    <div class="purple">FP16 → INT8:</div> Halves memory again, ~1-2% accuracy loss, runs on most NPUs<br>
+    <div class="yellow">INT8 → INT4:</div> Halves again, ~2-4% accuracy loss, enables 7B models on phones<br>
+    <div class="green">INT4 → INT2/ Binary:</div> Extreme compression, significant quality loss, research only
+  </div>
+
+  <p>The techniques behind INT4 quantization — GPTQ, AWQ, GGUF — are now standard tools. A 7B model that originally needs 14GB of memory fits in 3.5GB at INT4, well within the capabilities of modern NPUs.</p>
+
+  <h2>Hybrid Cloud-Edge Architecture</h2>
+  <p>Edge AI doesn't mean cloud is dead. The emerging pattern is hybrid: run small models locally for speed and privacy, delegate complex tasks to cloud models when needed.</p>
+
+  <div class="arch-diagram">
+    <span class="hl">┌──────────────────────────────────────────────────────────────────┐</span><br>
+    <span class="hl">│               Hybrid Cloud-Edge Architecture                     │</span><br>
+    <span class="hl">└──────────────────────────────────────────────────────────────────┘</span><br><br>
+    <span class="green">Device (Edge)</span><br>
+    &nbsp;&nbsp;├─ NPU runs 3B model locally (12ms latency)<br>
+    &nbsp;&nbsp;├─ Handles: autocomplete, classification, search, chat<br>
+    &nbsp;&nbsp;├─ Privacy: data never leaves device<br>
+    &nbsp;&nbsp;└─ Fallback: if confidence &lt; threshold, escalate to cloud<br><br>
+    <span class="purple">Cloud</span><br>
+    &nbsp;&nbsp;├─ GPU runs 70B+ model (200ms latency)<br>
+    &nbsp;&nbsp;├─ Handles: complex reasoning, multi-modal, long-context<br>
+    &nbsp;&nbsp;└─ Batch processing, fine-tuning, evaluation
+  </div>
+
+  <h2>Why This Matters</h2>
+  <p>Edge AI isn't just about speed. Three forces are pushing inference to devices:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Force</th><th>Why It Pushes to Edge</th></tr>
+      <tr><td>Privacy regulations</td><td>GDPR, HIPAA, and new state laws restrict sending personal data to cloud servers</td></tr>
+      <tr><td>Latency requirements</td><td>Real-time applications (code completion, voice assistants) need sub-50ms responses</td></tr>
+      <tr><td>Cost structure</td><td>Cloud inference at scale costs $0.01-0.10 per query; edge inference is free after hardware purchase</td></tr>
+      <tr><td>Offline capability</td><td>Edge models work without internet — critical for field workers, travelers, and unreliable networks</td></tr>
+    </table>
+  </div>
+
+  <div class="pull-quote">"The best inference is the inference that never leaves your device. Zero latency. Zero cost. Zero privacy risk."</div>
+
+  <h2>My FPGA Edge AI Project</h2>
+  <p>This is exactly the problem I explored in my FPGA-based UAV threat classifier. By deploying a quantized hls4ml neural network on a Zynq-7000 FPGA, I achieved sub-microsecond inference for radar signal classification — something impossible with cloud-based approaches. The FPGA approach demonstrated that edge AI isn't just about running smaller models. It's about co-designing hardware and algorithms for specific inference tasks.</p>
+
+  <h2>What's Next</h2>
+  <p>The trajectory is clear: model quality at small sizes will continue improving (driven by distillation and better training), NPU performance will double every two years, and hybrid architectures will become the default deployment pattern. Within two years, running a capable AI assistant entirely on your laptop will be standard, not experimental.</p>
+
+  <h2>References</h2>
+  <div class="links-section">
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://huggingface.co/docs/optimum/concept_guides/quantization" target="_blank">Hugging Face Quantization Guide</a><span>Introduction to quantization techniques for LLMs</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/ggerganov/llama.cpp" target="_blank">llama.cpp</a><span>C++ inference engine for quantized models on CPU/GPU</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://developer.qualcomm.com/software/qualcomm-ai-hub" target="_blank">Qualcomm AI Hub</a><span>Models optimized for Snapdragon NPUs</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/hrishikesh-reddi/fpga-radar-uav-classifier" target="_blank">My FPGA UAV Classifier</a><span>Edge AI on Zynq-7000 with hls4ml quantized inference</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ ARTICLE 10: OPEN SOURCE VS CLOSED SOURCE ═══════════════ -->
+<div class="page" id="page-opensource">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag tag-red">Industry</span>
+    <span class="article-date">June 2026</span>
+  </div>
+
+  <h1><em>Open Source vs Closed Source</em> — The 2026 State of Play</h1>
+
+  <p class="article-lead">
+    In January 2025, DeepSeek released R1 — a reasoning model trained for $6M that matched GPT-4-class performance. Meta released Llama 4 for free. Alibaba's Qwen models support 120+ languages. The gap between open and closed source AI is closing faster than anyone predicted. Here's where things stand.
+  </p>
+
+  <h2>The Numbers</h2>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Metric</th><th>Closed Source</th><th>Open Source</th></tr>
+      <tr><td>Best model (MMLU)</td><td>GPT-4o: 88%</td><td>Llama 4 Maverick: 85%</td></tr>
+      <tr><td>Training cost</td><td>$100M+ (estimated)</td><td>$6M (DeepSeek-R1)</td></tr>
+      <tr><td>Licensing</td><td>API-only, usage restrictions</td><td>Open weights, commercial use</td></tr>
+      <tr><td>Customization</td><td>Fine-tuning via API (limited)</td><td>Full weight access, any modification</td></tr>
+      <tr><td>Deployment</td><td>Cloud only</td><td>Local, edge, cloud, self-hosted</td></tr>
+      <tr><td>Data privacy</td><td>Data sent to provider</td><td>Data stays on your infrastructure</td></tr>
+    </table>
+  </div>
+
+  <h2>What Open Source Won</h2>
+  <p>Three areas where open source has effectively won:</p>
+
+  <div class="callout">
+    <div class="c-label">Open Source Wins</div>
+    <div class="green">1. Customization:</div> Full model weights mean you can fine-tune for your domain — legal, medical, financial — without anyone's permission<br>
+    <div class="purple">2. Privacy:</div> Run inference on your own servers. Patient data, financial records, classified documents never touch a third-party API<br>
+    <div class="yellow">3. Cost at scale:</div> Self-hosted inference is free after hardware investment. At 1M+ queries/day, this saves $10K-100K/month
+  </div>
+
+  <h2>What Closed Source Still Wins</h2>
+  <p>But closed source maintains real advantages in specific areas:</p>
+
+  <div class="callout">
+    <div class="c-label">Closed Source Advantages</div>
+    <div class="green">1. Frontier capability:</div> GPT-4o, Claude 4, and Gemini 2.5 Pro still lead on the hardest benchmarks — PhD-level science, complex reasoning, long-context synthesis<br>
+    <div class="purple">2. Multi-modal:</div> Closed models lead on vision, audio, and video understanding — GPT-4o's real-time voice and video capabilities have no open equivalent<br>
+    <div class="yellow">3. Ease of use:</div> API calls with zero infrastructure management — important for small teams and prototyping
+  </div>
+
+  <h2>The Llama Effect</h2>
+  <p>Meta's Llama series fundamentally changed the game. By releasing model weights for free, Meta created an ecosystem where thousands of developers fine-tune, optimize, and deploy Llama variants. The Hugging Face ecosystem alone hosts 100,000+ Llama-based models.</p>
+
+  <p>The strategic insight: Meta doesn't need to monetize Llama directly. They benefit from a world where AI is cheap and accessible — more AI-powered apps means more internet usage, which benefits Meta's core advertising business. Llama is a loss leader for the AI ecosystem.</p>
+
+  <div class="pull-quote">"Open source AI isn't a charity. It's a strategy. When AI is free, the platforms that distribute it win."</div>
+
+  <h2>The DeepSeek Moment</h2>
+  <p>DeepSeek-R1 demonstrated something uncomfortable for closed-source providers: cutting-edge reasoning capability can be achieved at a fraction of the claimed cost. The $6M training figure — if accurate — suggests that the massive training budgets of OpenAI and Google may reflect inefficiency more than necessity.</p>
+
+  <p>This doesn't mean building frontier models is easy. DeepSeek's team is exceptional, and their GRPO training methodology is innovative. But it does mean the moat of "only we can build this" is thinner than the market assumed.</p>
+
+  <h2>For Builders: What to Choose</h2>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Scenario</th><th>Recommendation</th></tr>
+      <tr><td>Prototyping, low volume</td><td>Close-source API (OpenAI, Anthropic) — fastest time to market</td></tr>
+      <tr><td>Production at scale</td><td>Open-source (Llama, Qwen, Mistral) — cost and control</td></tr>
+      <tr><td>Sensitive data</td><td>Open-source, self-hosted — privacy compliance</td></tr>
+      <tr><td>Multi-modal (voice, video)</td><td>Closed-source — GPT-4o and Gemini lead here</td></tr>
+      <tr><td>Edge deployment</td><td>Open-source (Phi-4, Llama 3.2, Gemma) — quantize and deploy</td></tr>
+      <tr><td>Domain-specific fine-tuning</td><td>Open-source — full weight access for LoRA/QLoRA</td></tr>
+    </table>
+  </div>
+
+  <h2>The Hybrid Future</h2>
+  <p>The most likely outcome isn't one side winning. It's a hybrid: closed-source providers push the frontier, open-source providers democratize access, and builders use whichever fits their constraints. This mirrors the Linux/Windows dynamic in operating systems — both thrive, serving different needs.</p>
+
+  <h2>References</h2>
+  <div class="links-section">
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://arxiv.org/abs/2501.12948" target="_blank">DeepSeek-R1 Paper</a><span>Training methodology and benchmark results</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://llama.meta.com/" target="_blank">Llama 4 — Meta</a><span>Open-weight model family</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://qwenlm.github.io/" target="_blank">Qwen — Alibaba</a><span>Open-weight multilingual models</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard" target="_blank">Open LLM Leaderboard</a><span>Live benchmark comparisons</span></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ ARTICLE 11: RAG IN 2026 ═══════════════ -->
+<div class="page" id="page-rag2026">
+<div class="article-page">
+  <div class="article-eyebrow">
+    <span class="article-tag" style="background:#dbeafe; color:#1e40af;">Gen AI</span>
+    <span class="article-date">July 2026</span>
+  </div>
+
+  <h1><em>RAG in 2026</em> — From Naive Retrieval to Production Architectures</h1>
+
+  <p class="article-lead">
+    Retrieval-Augmented Generation was supposed to be the answer to LLM hallucination. Chunk documents, embed them, retrieve relevant chunks, inject into prompt, generate. In practice, naive RAG works for demos and fails for production. Here's what actually works in 2026.
+  </p>
+
+  <h2>Why Naive RAG Fails</h2>
+  <p>The basic RAG pipeline — split documents into chunks, embed with a model like all-MiniLM-L6-v2, retrieve top-k, and inject into the prompt — breaks in predictable ways:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Failure Mode</th><th>Root Cause</th></tr>
+      <tr><td>Wrong chunks retrieved</td><td>Embedding similarity ≠ semantic relevance</td></tr>
+      <tr><td>Context fragmentation</td><td>Key information spans multiple chunks that aren't all retrieved</td></tr>
+      <tr><td>Noisy context</td><td>Retrieved chunks contain irrelevant text that confuses the LLM</td></tr>
+      <tr><td>Stale information</td><td>Documents updated but embeddings not re-indexed</td></tr>
+      <tr><td>No query understanding</td><td>Embedding model can't parse complex multi-part questions</td></tr>
+    </table>
+  </div>
+
+  <h2>Advanced RAG Architecture</h2>
+  <p>Production RAG in 2026 addresses these issues with a multi-stage pipeline:</p>
+
+  <div class="arch-diagram">
+    <span class="hl">┌──────────────────────────────────────────────────────────────────┐</span><br>
+    <span class="hl">│              Production RAG Pipeline (2026)                      │</span><br>
+    <span class="hl">└──────────────────────────────────────────────────────────────────┘</span><br><br>
+    <span class="yellow">Query</span> → <span class="green">Query Understanding</span> (intent parsing, expansion, rewriting)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="purple">Hybrid Retrieval</span> (dense embeddings + sparse BM25 + reranking)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="purple">Contextual Compression</span> (extract relevant sentences from chunks)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="purple">Knowledge Graph</span> (entity relationships, structured facts)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="purple">Self-RAG</span> (model decides when to retrieve vs. use parametric knowledge)<br>
+    <span class="hl">───────────────────────────────────────────────────────────────────</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+    <span class="yellow">Grounded Answer</span> with citations and confidence scores
+  </div>
+
+  <h2>Chunking Strategies</h2>
+  <p>How you split documents dramatically affects retrieval quality. The naive approach (split every 500 characters with 50-character overlap) is almost always wrong.</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Strategy</th><th>How It Works</th><th>Best For</th></tr>
+      <tr><td>Fixed-size</td><td>Split every N characters with overlap</td><td>Quick prototypes, uniform documents</td></tr>
+      <tr><td>Semantic chunking</td><td>Split at paragraph/section boundaries using embeddings</td><td>Well-structured documents (markdown, HTML)</td></tr>
+      <tr><td>Recursive character</td><td>Split by paragraph → sentence → word, respecting limits</td><td>General-purpose, robust default</td></tr>
+      <tr><td>Document-aware</td><td>Split by document structure (headers, code blocks, tables)</td><td>Technical docs, code, mixed content</td></tr>
+      <tr><td>Agentic chunking</td><td>LLM determines optimal split points</td><td>High-value documents where quality matters</td></tr>
+    </table>
+  </div>
+
+  <h2>Hybrid Search</h2>
+  <p>Neither dense embeddings nor sparse retrieval (BM25) alone are sufficient. Dense embeddings excel at semantic similarity ("car" matches "automobile"). BM25 excels at keyword matching (exact term occurrence). Production systems use both:</p>
+
+  <div class="callout">
+    <div class="c-label">Hybrid Search Pipeline</div>
+    <div class="green">Dense retrieval:</div> Embed query and documents with sentence-transformers, retrieve top-50 by cosine similarity<br>
+    <div class="purple">Sparse retrieval:</div> BM25 keyword search, retrieve top-50 by term frequency<br>
+    <div class="yellow">Fusion:</div> Reciprocal Rank Fusion (RRF) merges both ranked lists<br>
+    <div class="green">Re-ranking:</div> Cross-encoder model re-scores top-20 for final top-5
+  </div>
+
+  <p>The re-ranking step is critical. A cross-encoder like BGE-reranker processes query-document pairs together (not independently), producing much more accurate relevance scores than embedding similarity alone.</p>
+
+  <h2>Self-RAG: When Not to Retrieve</h2>
+  <p>Not every query benefits from retrieval. "What's 2+2?" doesn't need document context. "What's the capital of France?" is better answered from parametric knowledge than from a random document. Self-RAG trains the model to decide: should I retrieve, or can I answer from what I already know?</p>
+
+  <div class="callout">
+    <div class="c-label">Self-RAG Decision Flow</div>
+    <div class="green">1. Is retrieval needed?</div> Model evaluates: "Does this require external knowledge?"<br>
+    <div class="purple">2. Retrieve if yes:</div> Standard hybrid retrieval pipeline<br>
+    <div class="yellow">3. Is retrieved info relevant?</div> Model scores each chunk for relevance<br>
+    <div class="green">4. Is the answer supported?</div> Model checks if generated answer is grounded in retrieved context<br>
+    <div class="purple">5. Generate or abstain:</div> If retrieval quality is low, model says "I don't have enough information"
+  </div>
+
+  <h2>Evaluation</h2>
+  <p>You can't improve what you can't measure. RAG evaluation goes beyond simple retrieval metrics:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Metric</th><th>What It Measures</th><th>Tool</th></tr>
+      <tr><td>Context Precision</td><td>Are retrieved chunks relevant?</td><td>RAGAS, DeepEval</td></tr>
+      <tr><td>Context Recall</td><td>Did we retrieve all necessary information?</td><td>RAGAS</td></tr>
+      <tr><td>Faithfulness</td><td>Is the answer grounded in retrieved context?</td><td>RAGAS, DeepEval</td></tr>
+      <tr><td>Answer Relevance</td><td>Does the answer actually address the query?</td><td>RAGAS</td></tr>
+      <tr><td>End-to-end accuracy</td><td>Is the final answer correct?</td><td>Custom evaluation sets</td></tr>
+    </table>
+  </div>
+
+  <div class="pull-quote">"Naive RAG is a tutorial. Production RAG is an engineering discipline — chunking, retrieval, re-ranking, evaluation, and continuous improvement."</div>
+
+  <h2>RAG vs Fine-Tuning vs Long-Context</h2>
+  <p>RAG isn't the only approach to grounding LLMs. Here's when to use each:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Approach</th><th>When to Use</th></tr>
+      <tr><td>RAG</td><td>Large, frequently updated knowledge bases; need citations; cost-sensitive</td></tr>
+      <tr><td>Fine-tuning</td><td>Domain-specific style/format; consistent behavior; smaller knowledge base</td></tr>
+      <tr><td>Long-context</td><td>Small document set; need full-text reasoning; can afford token costs</td></tr>
+      <tr><td>Hybrid (RAG + fine-tune)</td><td>Domain expertise + large knowledge base; best quality but most complex</td></tr>
+    </table>
+  </div>
+
+  <h2>References</h2>
+  <div class="links-section">
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://arxiv.org/abs/2312.10997" target="_blank">Self-RAG Paper</a><span>Learning to Retrieve, Generate, and Critique through Self-Reflection</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://docs.ragas.io/" target="_blank">RAGAS Documentation</a><span>Framework for RAG evaluation</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://github.com/langchain-ai/rag-from-scratch" target="_blank">RAG From Scratch — LangChain</a><span>Step-by-step RAG implementation notebook series</span></div></div>
+    <div class="link-item"><div class="link-dot"></div><div><a href="https://jina.ai/news/late-chunking-in-long-context-llm-embeddings/" target="_blank">Late Chunking</a><span>Novel chunking approach using long-context embeddings</span></div></div>
+  </div>
+</div>
+</div>
+
 <script>
+let currentSection = 'blog';
+let currentPage = 'blog-index';
+
+function showSection(section) {
+  currentSection = section;
+  currentPage = section === 'blog' ? 'blog-index' : 'projects-index';
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + currentPage).classList.add('active');
+
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.nav-tab[data-section="' + section + '"]').classList.add('active');
+
+  document.getElementById('nav-back').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
-  document.getElementById('nav-back').style.display = id === 'index' ? 'none' : 'flex';
+
+  currentPage = id;
+  const isIndex = id === 'blog-index' || id === 'projects-index';
+  document.getElementById('nav-back').style.display = isIndex ? 'none' : 'flex';
+
+  if (id.startsWith('proj-')) {
+    currentSection = 'projects';
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelector('.nav-tab[data-section="projects"]').classList.add('active');
+    document.getElementById('back-label').textContent = 'All Projects';
+  } else if (id === 'blog-index') {
+    currentSection = 'blog';
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelector('.nav-tab[data-section="blog"]').classList.add('active');
+  } else if (id !== 'projects-index') {
+    currentSection = 'blog';
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelector('.nav-tab[data-section="blog"]').classList.add('active');
+    document.getElementById('back-label').textContent = 'All Transmissions';
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goBack() {
+  if (currentSection === 'projects') {
+    showSection('projects');
+  } else {
+    showSection('blog');
+  }
 }
 </script>
 </body>
